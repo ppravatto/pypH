@@ -1,5 +1,8 @@
 (API)=
-# `pypH.base` module
+
+# API guide
+
+## `pypH.base` module
 
 ```{eval-rst}
 .. automodule:: pypH.base
