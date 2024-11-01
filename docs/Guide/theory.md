@@ -4,17 +4,17 @@
 When an acid of generic formula $H_nA$, with $n\geq1$, is dissolved in an aquous solution, a series of dissociations equilibrium are immediately estabished according to the sequence of reactions:
 
 $$
-H_nA + H_2O \rightarrow H_{n-1}A^- + H_3O^+
+\ce{H_nA + H_2O <=> H_{n-1}A^- + H_3O^+}
 $$
 
 $$
-H_{n-1}A^- + H_2O \rightarrow H_{n-2}A^{2-} + H_3O^+
+\ce{H_{n-1}A^- + H_2O <=> H_{n-2}A^{2-} + H_3O^+}
 $$
 
 $$ ... $$
 
 $$
-HA^{(n-1)-} + H_2O \rightarrow A^{n-} + H_3O^+
+\ce{HA^{(n-1)-} + H_2O <=> A^{n-} + H_3O^+}
 $$
 
 Each of the written reactions is an equilibrium characterized by a acidic dissociation constant $k_a^{(i)}$ defined according to:

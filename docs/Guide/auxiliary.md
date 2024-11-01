@@ -67,5 +67,3 @@ plotter.add_auxiliary(left_side)
 
 plotter.plot(show_legend=True)
 ```
-
-kk
