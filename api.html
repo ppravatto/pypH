@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pypH.base module &mdash; pypH User Guide</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/scripts/sphinx-book-theme.js"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+      <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributor’s guide" href="contributor-guide.html" />
+    <link rel="prev" title="Auxiliary function" href="Guide/auxiliary.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="intro.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">pypH.base</span></code> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributor-guide.html">Contributor’s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="intro.html">Project name not set</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="intro.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">pypH.base</span></code> module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.md" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="Guide/auxiliary.html" class="btn btn-neutral float-left" title="Auxiliary function" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contributor-guide.html" class="btn btn-neutral float-right" title="Contributor’s guide" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="module-pypH.base">
+<span id="pyph-base-module"></span><span id="api"></span><h1><code class="docutils literal notranslate"><span class="pre">pypH.base</span></code> module<a class="headerlink" href="#module-pypH.base" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pypH.base.Acid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypH.base.</span></span><span class="sig-name descname"><span class="pre">Acid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pka</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concentration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Acid" title="Link to this definition"></a></dt>
+<dd><p>The Acid class encodes the behavior of a generic mono or polyprotic acid. The number of acidic protons
+is defined automatically by setting the pKa values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pka</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – The list of pka values associated to the various acid dissociations.</p></li>
+<li><p><strong>concentration</strong> (<em>float</em>) – The molar concentration of the acid.</p></li>
+<li><p><strong>names</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – An optional field in which the user can specify names to each deprotonation product. (accepts latex)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypH.base.Acid.concentration">
+<span class="sig-name descname"><span class="pre">concentration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Acid.concentration" title="Link to this definition"></a></dt>
+<dd><p>Compute the concentration of the user defined deprotonation state of the acid at the specified pH.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – The index of the deprotonation state as the number of lost protons</p></li>
+<li><p><strong>pH</strong> (<em>float</em>) – The pH value at which the concentration must be computed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Exceprion raised when the user specified index is smaller than zero or greate than the number of protons</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The concentration of the selected deprotonation state at the given pH.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypH.base.Acid.names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypH.base.Acid.names" title="Link to this definition"></a></dt>
+<dd><p>The names associated to each deprotonation product.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of names.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypH.base.Acid.nprotons">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nprotons</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pypH.base.Acid.nprotons" title="Link to this definition"></a></dt>
+<dd><p>The number of acidic protons in the molecule</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The number of acidic protons</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypH.base.Hydronium">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypH.base.</span></span><span class="sig-name descname"><span class="pre">Hydronium</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coefficient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Hydronium" title="Link to this definition"></a></dt>
+<dd><p>Simple class to define a hydronium ion term in an auxiliary curve definition.
+The name of the species is automatically set to “H_3O^+”</p>
+<section id="attribues">
+<h2>Attribues<a class="headerlink" href="#attribues" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>coefficient: float</dt><dd><p>The coefficient to be applied to the term.</p>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coefficient</strong> (<em>float</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypH.base.Hydroxide">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypH.base.</span></span><span class="sig-name descname"><span class="pre">Hydroxide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coefficient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Hydroxide" title="Link to this definition"></a></dt>
+<dd><p>Simple class to define a hydroxide ion term in an auxiliary curve definition.
+The name of the species is automatically set to “OH^-”</p>
+<section id="id1">
+<h2>Attribues<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>coefficient: float</dt><dd><p>The coefficient to be applied to the term.</p>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coefficient</strong> (<em>float</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypH.base.Plotter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypH.base.</span></span><span class="sig-name descname"><span class="pre">Plotter</span></span><a class="headerlink" href="#pypH.base.Plotter" title="Link to this definition"></a></dt>
+<dd><p>A simple class dedicated to the plot and manipulation of logarithmic diagrams. The class
+allows the user to define a system of acid and plot the concentration of the various deprotonation
+products as a function of the pH. The class also allows the user to define auxiliary curves to
+solve specific problems (e.g. solution based on protonic balance)</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypH.base.Plotter.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Plotter.add" title="Link to this definition"></a></dt>
+<dd><p>Funtion used to add an acid species to the list of acids.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name used to indentify the acid.</p></li>
+<li><p><strong>acid</strong> (<a class="reference internal" href="#pypH.base.Acid" title="pypH.base.Acid"><em>Acid</em></a>) – The acid class enconding the properties and concentration of the acid.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – Exception raised if the <cite>acid</cite> object is not of <cite>Acid</cite> type.</p></li>
+<li><p><strong>KeyError</strong> – Exception raised if the name used to identify the acid is already in use.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypH.base.Plotter.add_auxiliary">
+<span class="sig-name descname"><span class="pre">add_auxiliary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Plotter.add_auxiliary" title="Link to this definition"></a></dt>
+<dd><p>Function used to add an auxiliary curve to the plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>terms</strong> (<em>List</em><em>[</em><a class="reference internal" href="#pypH.base.Term" title="pypH.base.Term"><em>Term</em></a><em>]</em>) – The list of terms that compose the auxiliary curve</p></li>
+<li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The name of the auxiliary curve. If set to None the curve will be called “aux. N” with
+N a progressive number.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypH.base.Plotter.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pH_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">14]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concentration_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1e-14,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Plotter.plot" title="Link to this definition"></a></dt>
+<dd><p>Funtion to plot the logarithmic diagram of the defined acid-base system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pH_range</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – The minimum and maximum value of pH to be plotted, (defaut: [0, 14])</p></li>
+<li><p><strong>pH_delta</strong> (<em>float</em>) – The pH steps used in plotting the diagram (defaut: 0.001)</p></li>
+<li><p><strong>concentration_range</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – The range of concentrations to be plotted on the Y axis (default: [1e-14, 1])</p></li>
+<li><p><strong>show_legend</strong> (<em>bool</em>) – If set to True will show the legend with the name of the traces (default: False)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypH.base.Term">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypH.base.</span></span><span class="sig-name descname"><span class="pre">Term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coefficient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Term" title="Link to this definition"></a></dt>
+<dd><p>Simple class used to define a term to be used in the definition of an auxiliary curve.</p>
+<section id="id2">
+<h2>Attribues<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>name: str</dt><dd><p>The name of the acid from which the term should be selected</p>
+</dd>
+<dt>index: int</dt><dd><p>The deprotonation index of the desired form.</p>
+</dd>
+<dt>coefficient: float</dt><dd><p>The coefficient to be applied to the term.</p>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>)</p></li>
+<li><p><strong>index</strong> (<em>int</em>)</p></li>
+<li><p><strong>coefficient</strong> (<em>float</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
