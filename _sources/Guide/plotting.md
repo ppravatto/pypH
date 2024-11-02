@@ -32,7 +32,7 @@ Once the acid system has been defined it can be passed to the `Plotter` class to
 
 ```{code-cell} python
 plotter = Plotter()
-plotter.add("oxalic acid", oxalic_acid)
+plotter.add(oxalic_acid)
 
 plotter.plot(show_legend=True)
 ```
@@ -43,7 +43,7 @@ Please notice how the names of the deprotonation speces have automatically been 
 oxalic_acid = Acid([1.25, 4.14], 0.05, names=["$H_2Ox$", "$HOx^-$", "$Ox^{2-}$" ])
 
 plotter = Plotter()
-plotter.add("oxalic acid", oxalic_acid)
+plotter.add(oxalic_acid)
 
 plotter.plot(show_legend=True)
 ```

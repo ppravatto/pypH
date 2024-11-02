@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Auxiliary function &mdash; pypH User Guide</title>
+  <title>Auxiliary functions &mdash; pypH User Guide</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
@@ -67,7 +67,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../user-guide.html">User guide</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="theory.html">Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plotting.html">Basic plotting</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Auxiliary function</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Auxiliary functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API guide</a></li>
@@ -90,7 +90,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../intro.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../user-guide.html">User guide</a></li>
-      <li class="breadcrumb-item active">Auxiliary function</li>
+      <li class="breadcrumb-item active">Auxiliary functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/Guide/auxiliary.md" rel="nofollow"> View page source</a>
       </li>
@@ -103,10 +103,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="auxiliary-function">
-<span id="guide-auxiliary"></span><h1>Auxiliary function<a class="headerlink" href="#auxiliary-function" title="Link to this heading"></a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">Plotter</span></code> class also supports the definition of auxiliary curves. These are for example useful when visualizing the protonic balance of a solution.</p>
-<p>Let us consider as an example the problem of computing the <span class="math notranslate nohighlight">\(pH\)</span> of a <span class="math notranslate nohighlight">\(0.01M\)</span> diammonium phosphate <span class="math notranslate nohighlight">\((NH_4)_2HPO_4\)</span> solution. To do so, let us start by defining the system of acids according to:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="auxiliary-functions">
+<span id="guide-auxiliary"></span><h1>Auxiliary functions<a class="headerlink" href="#auxiliary-functions" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">Plotter</span></code> class also supports the definition of auxiliary curves. These are combination of concentrations of various species in solution and are very useful in the solution of many different acid-base problem. For example, by using auxiliary curves, on can easily visualize the point in which the protonic balance of a given solution is satisfies.</p>
+<p>To demonstrate how this can be done, let us consider as an example the problem of computing the <span class="math notranslate nohighlight">\(pH\)</span> of a <span class="math notranslate nohighlight">\(0.01M\)</span> diammonium phosphate <span class="math notranslate nohighlight">\((NH_4)_2HPO_4\)</span> solution. To do so, let us start by defining the system of acids according to:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.base</span> <span class="kn">import</span> <span class="o">*</span>
@@ -122,8 +122,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotter</span> <span class="o">=</span> <span class="n">Plotter</span><span class="p">()</span>
 
-<span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;ammonium&quot;</span><span class="p">,</span> <span class="n">ammonium</span><span class="p">)</span>
-<span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;phosphoric acid&quot;</span><span class="p">,</span> <span class="n">phosphoric_acid</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ammonium</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">phosphoric_acid</span><span class="p">)</span>
 
 <span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -138,25 +138,17 @@
 \[
     [H_3O^+] + [H_2PO_4^-] + 2[H_3PO_4] = [PO_4^{3-}] + [NH_3] + [OH^-]
 \]</div>
-<p>To compose the two sides of the protonic balance and represent them on the logarithmic diagram we should use a list of instances of the <code class="docutils literal notranslate"><span class="pre">Term</span></code> class. A <code class="docutils literal notranslate"><span class="pre">Term</span></code> object is a simple container holding the name of the acid system of the species, its deprotonation index and the relative coefficient. As such the right and left sides of the protonic balance can be constructed according to:</p>
+<p>To visualze the protonic balance on the logarithmic diagram one should represents both sides of the equality in terms of an <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> function object. An auxiliary function object is simply a collection of species in various state of deprotonation corredated by a given coefficient. The <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> object or the various <code class="docutils literal notranslate"><span class="pre">Species</span></code> object can be constructed manually by the user, using the informations provided in the API guide, or more conveniently can be automatically generated by the already available <code class="docutils literal notranslate"><span class="pre">Acid</span></code> class objects.</p>
+<p>The process is straightforward: given an <code class="docutils literal notranslate"><span class="pre">Acid</span></code> object, the correspondig speces can be obtained by directly using the <code class="docutils literal notranslate"><span class="pre">[index]</span></code> operator and specifying as the <code class="docutils literal notranslate"><span class="pre">index</span></code> the deprotonation degree of the wanted species. The obtained <code class="docutils literal notranslate"><span class="pre">Species</span></code> object can be multiplied by a <code class="docutils literal notranslate"><span class="pre">float</span></code> coefficient and summed to or subtracted from other <code class="docutils literal notranslate"><span class="pre">Species</span></code> of <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> object to give the final <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> expression. To show how this can be done consider the following example in which the right and left sides of the protonic balance are constructed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">right_side</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">Hydronium</span><span class="p">(</span><span class="mf">1.</span><span class="p">),</span>
-    <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;phosphoric acid&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span>
-    <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;phosphoric acid&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.</span><span class="p">)</span>
-    <span class="p">]</span>
-
-<span class="n">left_side</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;phosphoric acid&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span>
-    <span class="n">Term</span><span class="p">(</span><span class="s2">&quot;ammonium&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span>
-    <span class="n">Hydroxide</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
-    <span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">right_side</span> <span class="o">=</span> <span class="n">Hydronium</span> <span class="o">+</span> <span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">left_side</span> <span class="o">=</span> <span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">ammonium</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Hydroxide</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Where the <code class="docutils literal notranslate"><span class="pre">Hydronium</span></code> and <code class="docutils literal notranslate"><span class="pre">Hydroxide</span></code> object are pre-defined intances of the <code class="docutils literal notranslate"><span class="pre">Term</span></code> class to represent the solvent derived ions.</p>
+<p>Where the <code class="docutils literal notranslate"><span class="pre">Hydronium</span></code> and <code class="docutils literal notranslate"><span class="pre">Hydroxide</span></code> object are pre-defined intances of the <code class="docutils literal notranslate"><span class="pre">Species</span></code> class to represent the solvent derived ions <span class="math notranslate nohighlight">\(H_3O^+\)</span> ad <span class="math notranslate nohighlight">\(OH^-\)</span>.</p>
 <p>The auxiliary curves can be added to the plot using the <code class="docutils literal notranslate"><span class="pre">add_auxiliary</span></code> function according to:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -168,7 +160,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fbf7ea384956454361cd713c7729c0df7cd83e454c5a5224070e8a08bcb5e267.png" src="../_images/fbf7ea384956454361cd713c7729c0df7cd83e454c5a5224070e8a08bcb5e267.png" />
+<img alt="../_images/e3c98f2887d88c24795363460ea4264947ed3a17fca5741a0e98f2837358649d.png" src="../_images/e3c98f2887d88c24795363460ea4264947ed3a17fca5741a0e98f2837358649d.png" />
 </div>
 </div>
 </section>

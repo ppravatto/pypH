@@ -38,7 +38,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Contributor’s guide" href="contributor-guide.html" />
-    <link rel="prev" title="Auxiliary function" href="Guide/auxiliary.html" /> 
+    <link rel="prev" title="Auxiliary functions" href="Guide/auxiliary.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -87,7 +87,7 @@
             <a href="_sources/api.md" rel="nofollow"> View page source</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="Guide/auxiliary.html" class="btn btn-neutral float-left" title="Auxiliary function" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Guide/auxiliary.html" class="btn btn-neutral float-left" title="Auxiliary functions" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="contributor-guide.html" class="btn btn-neutral float-right" title="Contributor’s guide" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -169,44 +169,6 @@ If no name is given the system will automatically call the species with the sche
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="pypH.base.Hydronium">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypH.base.</span></span><span class="sig-name descname"><span class="pre">Hydronium</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coefficient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Hydronium" title="Link to this definition"></a></dt>
-<dd><p>Simple class to define a hydronium ion term in an auxiliary curve definition.
-The name of the species is automatically set to “H_3O^+”</p>
-<section id="attribues">
-<h3>Attribues<a class="headerlink" href="#attribues" title="Link to this heading"></a></h3>
-<dl class="simple">
-<dt>coefficient: float</dt><dd><p>The coefficient to be applied to the term.</p>
-</dd>
-</dl>
-</section>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>coefficient</strong> (<em>float</em>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="pypH.base.Hydroxide">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypH.base.</span></span><span class="sig-name descname"><span class="pre">Hydroxide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coefficient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Hydroxide" title="Link to this definition"></a></dt>
-<dd><p>Simple class to define a hydroxide ion term in an auxiliary curve definition.
-The name of the species is automatically set to “OH^-”</p>
-<section id="id1">
-<h3>Attribues<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
-<dl class="simple">
-<dt>coefficient: float</dt><dd><p>The coefficient to be applied to the term.</p>
-</dd>
-</dl>
-</section>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>coefficient</strong> (<em>float</em>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="pypH.base.Plotter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypH.base.</span></span><span class="sig-name descname"><span class="pre">Plotter</span></span><a class="headerlink" href="#pypH.base.Plotter" title="Link to this definition"></a></dt>
 <dd><p>A simple class dedicated to the plot and manipulation of logarithmic diagrams. The class
@@ -217,7 +179,7 @@ solve specific problems (e.g. solution based on protonic balance)</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pypH.base.Plotter.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Plotter.add" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">acid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Plotter.add" title="Link to this definition"></a></dt>
 <dd><p>Funtion used to add an acid species to the list of acids.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -240,14 +202,15 @@ solve specific problems (e.g. solution based on protonic balance)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pypH.base.Plotter.add_auxiliary">
-<span class="sig-name descname"><span class="pre">add_auxiliary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">terms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Plotter.add_auxiliary" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_auxiliary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auxiliary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Plotter.add_auxiliary" title="Link to this definition"></a></dt>
 <dd><p>Function used to add an auxiliary curve to the plot.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>terms</strong> (<em>List</em><em>[</em><a class="reference internal" href="#pypH.base.Term" title="pypH.base.Term"><em>Term</em></a><em>]</em>) – The list of terms that compose the auxiliary curve</p></li>
+<li><p><strong>terms</strong> (<em>List</em><em>[</em><em>Term</em><em>]</em>) – The list of terms that compose the auxiliary curve</p></li>
 <li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The name of the auxiliary curve. If set to None the curve will be called “aux. N” with
 N a progressive number.</p></li>
+<li><p><strong>auxiliary</strong> (<em>Auxiliary</em>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -275,26 +238,26 @@ N a progressive number.</p></li>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="pypH.base.Term">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypH.base.</span></span><span class="sig-name descname"><span class="pre">Term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coefficient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Term" title="Link to this definition"></a></dt>
-<dd><p>Simple class used to define a term to be used in the definition of an auxiliary curve.</p>
-<section id="id2">
-<h3>Attribues<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<dt class="sig sig-object py" id="pypH.base.Species">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypH.base.</span></span><span class="sig-name descname"><span class="pre">Species</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">acid_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.base.Species" title="Link to this definition"></a></dt>
+<dd><p>Simple class used to indentify a generic deprotonated species in the definition of an auxiliary curve.</p>
+<section id="attribues">
+<h3>Attribues<a class="headerlink" href="#attribues" title="Link to this heading"></a></h3>
 <dl class="simple">
+<dt>acid_id: int</dt><dd><p>The ID of the acid from which the speces is derived</p>
+</dd>
 <dt>name: str</dt><dd><p>The name of the acid from which the term should be selected</p>
 </dd>
 <dt>index: int</dt><dd><p>The deprotonation index of the desired form.</p>
-</dd>
-<dt>coefficient: float</dt><dd><p>The coefficient to be applied to the term.</p>
 </dd>
 </dl>
 </section>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>acid_id</strong> (<em>int</em>)</p></li>
 <li><p><strong>name</strong> (<em>str</em>)</p></li>
 <li><p><strong>index</strong> (<em>int</em>)</p></li>
-<li><p><strong>coefficient</strong> (<em>float</em>)</p></li>
 </ul>
 </dd>
 </dl>
