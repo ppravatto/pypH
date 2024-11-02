@@ -34,7 +34,7 @@ plotter = Plotter()
 plotter.add(ammonium)
 plotter.add(phosphoric_acid)
 
-plotter.plot(show_legend=True)
+plotter.plot(show_legend=True, concentration_range=(1e-6, 1.), figsize=(10, 7))
 ```
 
 To solve the problem and compute the $pH$ of the solution, one should consider the protonic balance that, for the system in question is represented by:
@@ -59,8 +59,10 @@ Where the `Hydronium` and `Hydroxide` object are pre-defined intances of the `Sp
 The auxiliary curves can be added to the plot using the `add_auxiliary` function according to:
 
 ```{code-cell} python
-plotter.add_auxiliary(right_side)
-plotter.add_auxiliary(left_side)
+plotter.add_auxiliary(right_side, name="r.h.s", color="red")
+plotter.add_auxiliary(left_side, name="l.h.s", color="blue")
 
-plotter.plot(show_legend=True)
+plotter.plot(show_legend=True, concentration_range=(1e-6, 1.), figsize=(10, 7))
 ```
+
+As can be seen the protonic balance is satisfied at $pH \approx 8.05$.

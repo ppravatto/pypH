@@ -127,12 +127,12 @@
 <span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ammonium</span><span class="p">)</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">phosphoric_acid</span><span class="p">)</span>
 
-<span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">concentration_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/95d381a486bab1fac3f6cbb854d5a66ce2572a8d393eebf688b418a5a8037352.png" src="../_images/95d381a486bab1fac3f6cbb854d5a66ce2572a8d393eebf688b418a5a8037352.png" />
+<img alt="../_images/fdd1a13f3b2ec52906b598c89642b6b083e89d96765198c4dfe61cfa1b6106f7.png" src="../_images/fdd1a13f3b2ec52906b598c89642b6b083e89d96765198c4dfe61cfa1b6106f7.png" />
 </div>
 </div>
 <p>To solve the problem and compute the <span class="math notranslate nohighlight">\(pH\)</span> of the solution, one should consider the protonic balance that, for the system in question is represented by:</p>
@@ -156,17 +156,18 @@
 <p>The auxiliary curves can be added to the plot using the <code class="docutils literal notranslate"><span class="pre">add_auxiliary</span></code> function according to:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotter</span><span class="o">.</span><span class="n">add_auxiliary</span><span class="p">(</span><span class="n">right_side</span><span class="p">)</span>
-<span class="n">plotter</span><span class="o">.</span><span class="n">add_auxiliary</span><span class="p">(</span><span class="n">left_side</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotter</span><span class="o">.</span><span class="n">add_auxiliary</span><span class="p">(</span><span class="n">right_side</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;r.h.s&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_auxiliary</span><span class="p">(</span><span class="n">left_side</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;l.h.s&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
 
-<span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">concentration_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fbf7ea384956454361cd713c7729c0df7cd83e454c5a5224070e8a08bcb5e267.png" src="../_images/fbf7ea384956454361cd713c7729c0df7cd83e454c5a5224070e8a08bcb5e267.png" />
+<img alt="../_images/c3d7cf18ab3619f900868cdbb5947b59389c91def39e2cf78b34d7f70801b232.png" src="../_images/c3d7cf18ab3619f900868cdbb5947b59389c91def39e2cf78b34d7f70801b232.png" />
 </div>
 </div>
+<p>As can be seen the protonic balance is satisfied at <span class="math notranslate nohighlight">\(pH \approx 8.05\)</span>.</p>
 </section>
 
     <script type="text/x-thebe-config">
