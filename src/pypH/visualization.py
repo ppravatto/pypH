@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Tuple, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -18,7 +18,7 @@ class Plotter:
 
     def __init__(self) -> None:
         self.__acids: List[Acid] = []
-        self.__auxiliaries: Dict[str, Auxiliary] = {}
+        self.__auxiliaries: Dict[str, List[Auxiliary, str]] = {}
 
     def add(self, acid: Acid) -> None:
         """
@@ -40,7 +40,7 @@ class Plotter:
 
         self.__acids.append(acid)
 
-    def add_auxiliary(self, auxiliary: Auxiliary, name: Optional[str] = None):
+    def add_auxiliary(self, auxiliary: Auxiliary, name: Optional[str] = None, color: Optional[str] = None):
         """
         Function used to add an auxiliary curve to the plot.
 
@@ -51,6 +51,9 @@ class Plotter:
         name: Optional[str]
             The name of the auxiliary curve. If set to `None` the name will be set to `aux. <N>` with
             `<N>` a progressive number starting from 1.
+        color: Optional[str]
+            The color to be used in tracing the auxiliary curve. If set to `None` (default) will leave
+            the choice to matplotlib color sequence.
         
         Raises
         ------
@@ -82,7 +85,7 @@ class Plotter:
             else:
                 raise RuntimeError("Invalid acid ID found")
 
-        self.__auxiliaries[name] = auxiliary
+        self.__auxiliaries[name] = [auxiliary, color]
 
 
     def plot(
@@ -91,6 +94,8 @@ class Plotter:
         pH_delta: float = 0.001,
         concentration_range: List[float] = [1e-14, 1],
         show_legend: bool = False,
+        legend_location: Union[int, str] = 'lower right',
+        figsize: Tuple[float] = [10, 9],
     ) -> None:
         """
         Funtion to plot the logarithmic diagram of the defined acid-base system.
@@ -105,12 +110,16 @@ class Plotter:
             The range of concentrations to be plotted on the Y axis (default: [1e-14, 1])
         show_legend: bool
             If set to True will show the legend with the name of the traces (default: False)
+        legend_location: Union[int, str]
+            The location of the legend as expressed bu matplotlib. (default: lower right)
+        figsize: Tuple[float]
+            The tuple of float values setting the size of the figure.
         """
 
         pH_scale = np.arange(pH_range[0], pH_range[1], pH_delta)
 
         plt.rc("font", **{"size": 16})
-        fig = plt.figure(figsize=(10, 9))
+        fig = plt.figure(figsize=figsize)
 
         hydronium = [10 ** (-pH) for pH in pH_scale]
         hydroxide = [10 ** (-14 + pH) for pH in pH_scale]
@@ -126,7 +135,7 @@ class Plotter:
                 )
 
         if self.__auxiliaries != {}:
-            for name, auxiliary in self.__auxiliaries.items():
+            for name, [auxiliary, color] in self.__auxiliaries.items():
                 conc = []
                 for pH in pH_scale:
                     value = 0.0
@@ -144,7 +153,10 @@ class Plotter:
 
                     conc.append(value)
 
-                plt.semilogy(pH_scale, conc, label=name, linestyle="--")
+                if color is not None:
+                    plt.semilogy(pH_scale, conc, label=name, linestyle="--", color=color)
+                else:
+                    plt.semilogy(pH_scale, conc, label=name, linestyle="--")
 
         plt.ylim(concentration_range)
         plt.xlim(pH_range)
@@ -156,7 +168,7 @@ class Plotter:
         plt.grid(which="minor", c="#EEEEEE")
 
         if show_legend:
-            plt.legend(loc=4)
+            plt.legend(loc=legend_location, fontsize=14)
 
         plt.tight_layout()
         plt.show()
