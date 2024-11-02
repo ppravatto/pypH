@@ -35,7 +35,7 @@ import pypH
 Alternatively, individual submodules, classes, and functions can be imported separately:
 
 ```python
-from pypH.base import Acid
+from pypH.core import Acid
 ```
 
 For a more detailed explanation of the available features in each submodule, please refer to their specific page in this [User Guide](user-guide).

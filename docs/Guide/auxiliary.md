@@ -18,7 +18,7 @@ The `Plotter` class also supports the definition of auxiliary curves. These are 
 To demonstrate how this can be done, let us consider as an example the problem of computing the $pH$ of a $0.01M$ diammonium phosphate $(NH_4)_2HPO_4$ solution. To do so, let us start by defining the system of acids according to:
 
 ```{code-cell} python
-from pypH.base import *
+from pypH.core import Acid
 
 phosphoric_acid = Acid([2.14, 7.20, 12.37], 0.01, names=["$H_3PO_4$", "$H_2PO_4^-$", "$HPO_4^{2-}$", "$PO_4^{3-}$"])
 ammonium = Acid([9.24], 0.02, names=["$NH_4^+$", "$NH_3$"])
@@ -27,6 +27,8 @@ ammonium = Acid([9.24], 0.02, names=["$NH_4^+$", "$NH_3$"])
 That, represented on the logarithmic diagram, appears as follows:
 
 ```{code-cell} python
+from pypH.visualization import Plotter
+
 plotter = Plotter()
 
 plotter.add(ammonium)
@@ -46,6 +48,8 @@ To visualze the protonic balance on the logarithmic diagram one should represent
 The process is straightforward: given an `Acid` object, the correspondig speces can be obtained by directly using the `[index]` operator and specifying as the `index` the deprotonation degree of the wanted species. The obtained `Species` object can be multiplied by a `float` coefficient and summed to or subtracted from other `Species` of `Auxiliary` object to give the final `Auxiliary` expression. To show how this can be done consider the following example in which the right and left sides of the protonic balance are constructed:
 
 ```{code-cell} python
+from pypH.species import Hydronium, Hydroxide
+
 right_side = Hydronium + phosphoric_acid[1] + 2.*phosphoric_acid[0]
 left_side = phosphoric_acid[3] + ammonium[1] + Hydroxide
 ```
