@@ -16,13 +16,18 @@ class Acid:
     concentration: float
         The molar concentration of the acid.
     names: Optional[List[str]]
-        An optional field in which the user can specify names to each deprotonation product. (accepts latex)
+        An optional field in which the user can specify names to be assigned to each deprotonation product.
+        If no name is given the system will automatically call the species with the scheme `H_iX^{{n-i}-}" where
+        `X` is a progressive letter assigned starting form `A`.
     """
+
+    __acid_id = 0
 
     def __init__(
         self, pka: List[float], concentration: float, names: Optional[List[str]] = None
     ) -> None:
-        self.Ca: float = concentration
+        
+        self.__Ca: float = concentration
         self.__pka: List[float] = sorted(pka)
         self.__ka = [10 ** (-pka) for pka in self.__pka]
 
@@ -30,13 +35,36 @@ class Acid:
         for ka in self.__ka:
             self.__betas.append(self.__betas[-1] * ka)
 
-        if names is not None:
+        if names is None:
+
+            letter = chr(ord('A') + Acid.__acid_id)
+
+            self.__names = []
+
+            for i in range(self.nprotons+1):
+                
+                name = "$"
+                name += "H" if self.nprotons - i > 0 else ""
+                name += ("_{" + f"{self.nprotons-i}" + "}") if self.nprotons - i > 1 else ""
+                name += f"{letter}"
+                
+                if i!=0:
+                    name += "^-" if i==1 else "^{" + f"{i}" + "-}"
+                
+                name += "$"
+                self.__names.append(name)
+        
+        else:
+
             if len(names) != self.nprotons + 1:
                 raise ValueError(
                     "The number of provided names does not match the number of deprotonation products"
                 )
+            
+            self.__names = names  
 
-        self.__names = names
+        Acid.__acid_id += 1       
+
 
     @property
     def nprotons(self) -> int:
@@ -92,21 +120,7 @@ class Acid:
         for m in range(0, self.nprotons + 1):
             factor += hydronium ** (index - m) * self.__betas[m] / self.__betas[index]
 
-        # #left sweep
-        # for n in range(index):
-        #     ka_product = 1
-        #     for i in range(index-n-1, index):
-        #         ka_product *= self.__ka[i]
-        #     factor += (hydronium**(n+1))/ka_product
-
-        # #right sweep
-        # for n in range(len(self.__pka)-index):
-        #     ka_product = 1
-        #     for i in range(index, index+n+1):
-        #         ka_product *= self.__ka[i]
-        #     factor += ka_product/(hydronium**(n+1))
-
-        return self.Ca / factor
+        return self.__Ca / factor
 
 
 class Term:
