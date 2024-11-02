@@ -1,7 +1,10 @@
+from __future__ import annotations
+
 import matplotlib.pyplot as plt
 import numpy as np
 
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Union, Generator
+from copy import deepcopy
 
 
 class Acid:
@@ -21,15 +24,16 @@ class Acid:
         `X` is a progressive letter assigned starting form `A`.
     """
 
-    __acid_id = 0
+    __acid_class_id = 0
 
     def __init__(
         self, pka: List[float], concentration: float, names: Optional[List[str]] = None
     ) -> None:
-        
+
         self.__Ca: float = concentration
         self.__pka: List[float] = sorted(pka)
         self.__ka = [10 ** (-pka) for pka in self.__pka]
+        self.__id = deepcopy(Acid.__acid_class_id)
 
         self.__betas = [1]
         for ka in self.__ka:
@@ -37,34 +41,59 @@ class Acid:
 
         if names is None:
 
-            letter = chr(ord('A') + Acid.__acid_id)
+            letter = chr(ord("A") + self.__id)
 
             self.__names = []
 
-            for i in range(self.nprotons+1):
-                
+            for i in range(self.nprotons + 1):
+
                 name = "$"
                 name += "H" if self.nprotons - i > 0 else ""
-                name += ("_{" + f"{self.nprotons-i}" + "}") if self.nprotons - i > 1 else ""
+                name += (
+                    ("_{" + f"{self.nprotons-i}" + "}") if self.nprotons - i > 1 else ""
+                )
                 name += f"{letter}"
-                
-                if i!=0:
-                    name += "^-" if i==1 else "^{" + f"{i}" + "-}"
-                
+
+                if i != 0:
+                    name += "^-" if i == 1 else "^{" + f"{i}" + "-}"
+
                 name += "$"
                 self.__names.append(name)
-        
+
         else:
 
             if len(names) != self.nprotons + 1:
                 raise ValueError(
                     "The number of provided names does not match the number of deprotonation products"
                 )
-            
-            self.__names = names  
 
-        Acid.__acid_id += 1       
+            self.__names = names
+        
+        Acid.__acid_class_id += 1
 
+    def __getitem__(self, index: int) -> Species:
+        """
+        Returns the species obtained from the acid by `index` subsequent deprotonations.
+
+        Retruns
+        -------
+        Species
+            The `Species` object identifying the deprotonated species
+
+        Raises
+        ------
+        ValueError
+            Exceprion raised when the user specified index is smaller than zero or greate than the number of protons
+        """
+
+        if index < 0 or index > self.nprotons:
+            raise ValueError("Invalid index")
+
+        return Species(self.__id, self.__names[index], index)
+
+    @property
+    def id(self) -> int:
+        return self.__id
 
     @property
     def nprotons(self) -> int:
@@ -123,54 +152,112 @@ class Acid:
         return self.__Ca / factor
 
 
-class Term:
+class Auxiliary:
+
+    def __init__(self):
+        self.species: List[Species] = []
+        self.coefficients: List[float] = []
+
+    def __iter__(self) -> Generator[Species, float]:
+        for species, coefficient in zip(self.species, self.coefficients):
+            yield species, coefficient
+
+    def __add__(self, other: Union[Species, Auxiliary]) -> Auxiliary:
+
+        obj: Auxiliary = deepcopy(self)
+
+        if isinstance(other, Species):
+            obj.species.append(other)
+            obj.coefficients.append(1.0)
+            return obj
+
+        elif isinstance(other, Auxiliary):
+            for species, coefficient in other:
+                obj.species.append(species)
+                obj.coefficients.append(coefficient)
+            return obj
+
+        else:
+            raise TypeError(
+                f"Cannot perform summation between Auxiliary object and {type(other)} object"
+            )
+
+    def __sub__(self, other: Union[Species, Auxiliary]) -> Auxiliary:
+
+        obj: Auxiliary = deepcopy(self)
+
+        if isinstance(other, Species):
+            obj.species.append(other)
+            obj.coefficients.append(-1.0)
+            return obj
+
+        elif isinstance(other, Auxiliary):
+            for species, coefficient in other:
+                obj.species.append(species)
+                obj.coefficients.append(-coefficient)
+            return obj
+
+        else:
+            raise TypeError(
+                f"Cannot perform summation between Auxiliary object and {type(other)} object"
+            )
+        
+    def __mul__(self, number: float) -> Auxiliary:
+
+        obj: Auxiliary = deepcopy(self)
+
+        obj.coefficients = []
+        for coefficient in self.coefficients:
+            obj.coefficients.append(coefficient * float(number))
+        
+        return obj
+
+    def __rmul__(self, number: float) -> Auxiliary:
+        return self.__mul__(number)
+
+
+class Species:
     """
-    Simple class used to define a term to be used in the definition of an auxiliary curve.
+    Simple class used to indentify a generic deprotonated species in the definition of an auxiliary curve.
 
     Attribues
     ---------
+    acid_id: int
+        The ID of the acid from which the speces is derived
     name: str
         The name of the acid from which the term should be selected
     index: int
         The deprotonation index of the desired form.
-    coefficient: float
-        The coefficient to be applied to the term.
     """
 
-    def __init__(self, name: str, index: int, coefficient: float = 1.0):
+    def __init__(self, acid_id: int, name: str, index: int):
+        self.acid_id = acid_id
         self.name: str = name
         self.index: int = index
-        self.coefficient: float = coefficient
+    
+    def to_auxiliary(self) -> Auxiliary:
+        obj = Auxiliary()
+        obj.species.append(self)
+        obj.coefficients.append(1.)
+        return obj
+    
+    def __add__(self, other: Union[Species, Auxiliary]) -> Auxiliary:
+        obj = self.to_auxiliary()
+        return obj+other
+    
+    def __sub__(self, other: Union[Species, Auxiliary]) -> Auxiliary:
+        obj = self.to_auxiliary()
+        return obj-other
 
+    def __mul__(self, coefficient: float) -> Auxiliary:
+        obj = self.to_auxiliary()
+        return coefficient*obj
+    
+    def __rmul__(self, coefficient: float) -> Auxiliary:
+        return self.__mul__(coefficient)
 
-class Hydronium(Term):
-    """
-    Simple class to define a hydronium ion term in an auxiliary curve definition.
-    The name of the species is automatically set to "H_3O^+"
-
-    Attribues
-    ---------
-    coefficient: float
-        The coefficient to be applied to the term.
-    """
-
-    def __init__(self, coefficient: float = 1):
-        super().__init__("H_3O^+", None, coefficient)
-
-
-class Hydroxide(Term):
-    """
-    Simple class to define a hydroxide ion term in an auxiliary curve definition.
-    The name of the species is automatically set to "OH^-"
-
-    Attribues
-    ---------
-    coefficient: float
-        The coefficient to be applied to the term.
-    """
-
-    def __init__(self, coefficient: float = 1):
-        super().__init__("OH^-", None, coefficient)
+Hydronium = Species(None, "H_3O^+", None)
+Hydroxide = Species(None, "OH^-", None)
 
 
 class Plotter:
@@ -182,10 +269,10 @@ class Plotter:
     """
 
     def __init__(self) -> None:
-        self.__acids: Dict[str, Acid] = {}
-        self.__auxiliary: Dict[str, List[Term]] = {}
+        self.__acids: List[Acid] = []
+        self.__auxiliaries: Dict[str, Auxiliary] = {}
 
-    def add(self, name: str, acid: Acid) -> None:
+    def add(self, acid: Acid) -> None:
         """
         Funtion used to add an acid species to the list of acids.
 
@@ -207,12 +294,9 @@ class Plotter:
         if type(acid) != Acid:
             raise TypeError("Acid class object expected as argument")
 
-        if name in self.__acids:
-            raise ValueError("The name is aleady in use")
+        self.__acids.append(acid)
 
-        self.__acids[name] = acid
-
-    def add_auxiliary(self, terms: List[Term], name: Optional[str] = None):
+    def add_auxiliary(self, auxiliary: Auxiliary, name: Optional[str] = None):
         """
         Function used to add an auxiliary curve to the plot.
 
@@ -227,23 +311,30 @@ class Plotter:
         """
 
         if name is None:
-            name = f"aux. {len(self.__auxiliary)+1}"
+            name = f"aux. {len(self.__auxiliaries)+1}"
 
-        if name in self.__auxiliary:
-            raise ValueError("Auxiliary name already in use")
+        if name in self.__auxiliaries:
+            raise ValueError("The selected auxiliary curve name is already in use")
+        
+        if type(auxiliary) != Auxiliary:
+            raise TypeError("Auxiliary curve definitions must be provided as instances of the Auxiliary class")
 
-        for term in terms:
+        for species in auxiliary.species:
 
-            if term.name == "H_3O^+" or term.name == "OH^-":
+            if species.name == "H_3O^+" or species.name == "OH^-":
                 continue
+            
+            for acid in self.__acids:
+                if acid.id == species.acid_id:
 
-            if term.name not in self.__acids.keys():
-                raise ValueError("Acid name invalid")
+                    if species.index<0 or species.index>acid.nprotons:
+                        raise RuntimeError("Invalid deprotonation index found")
+                    break
+            else:
+                raise RuntimeError("Invalid acid ID found")
 
-            if term.index < 0 or term.index > self.__acids[term.name].nprotons:
-                raise ValueError("Deprotonation index is invalid")
+        self.__auxiliaries[name] = auxiliary
 
-        self.__auxiliary[name] = terms
 
     def plot(
         self,
@@ -278,30 +369,29 @@ class Plotter:
         plt.semilogy(pH_scale, hydronium, label=r"$H_3O^+$")
         plt.semilogy(pH_scale, hydroxide, label=r"$OH^-$")
 
-        for name, acid in self.__acids.items():
+        for acid in self.__acids:
             for i in range(acid.nprotons + 1):
                 conc = [acid.concentration(i, pH) for pH in pH_scale]
                 plt.semilogy(
                     pH_scale, conc, label=None if acid.names is None else acid.names[i]
                 )
 
-        if self.__auxiliary != {}:
-            for name, terms in self.__auxiliary.items():
+        if self.__auxiliaries != {}:
+            for name, auxiliary in self.__auxiliaries.items():
                 conc = []
                 for pH in pH_scale:
                     value = 0.0
-                    for term in terms:
+                    for species, coefficient in zip(auxiliary.species, auxiliary.coefficients):
 
-                        if term.name == "H_3O^+":
-                            value += term.coefficient * 10 ** (-pH)
+                        if species.name == "H_3O^+":
+                            value += coefficient * 10 ** (-pH)
 
-                        elif term.name == "OH^-":
-                            value += term.coefficient * 10 ** (-14 + pH)
+                        elif species.name == "OH^-":
+                            value += coefficient * 10 ** (-14 + pH)
 
                         else:
-                            value += term.coefficient * self.__acids[
-                                term.name
-                            ].concentration(term.index, pH)
+                            i = [acid.id for acid in self.__acids].index(species.acid_id)
+                            value += coefficient * self.__acids[i].concentration(species.index, pH)
 
                     conc.append(value)
 
@@ -321,5 +411,3 @@ class Plotter:
 
         plt.tight_layout()
         plt.show()
-
-
