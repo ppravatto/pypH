@@ -2,7 +2,7 @@
 title                       : pypH User Guide
 author                      : Pierpaolo Pravatto
 copyright                   : "2024"
-#logo                        : logo/logo.png
+logo                        : logo/logo_pypH.png
 
 # Force re-execution of notebooks on each build.
 execute:
