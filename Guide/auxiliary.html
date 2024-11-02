@@ -109,7 +109,7 @@
 <p>To demonstrate how this can be done, let us consider as an example the problem of computing the <span class="math notranslate nohighlight">\(pH\)</span> of a <span class="math notranslate nohighlight">\(0.01M\)</span> diammonium phosphate <span class="math notranslate nohighlight">\((NH_4)_2HPO_4\)</span> solution. To do so, let us start by defining the system of acids according to:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.base</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.core</span> <span class="kn">import</span> <span class="n">Acid</span>
 
 <span class="n">phosphoric_acid</span> <span class="o">=</span> <span class="n">Acid</span><span class="p">([</span><span class="mf">2.14</span><span class="p">,</span> <span class="mf">7.20</span><span class="p">,</span> <span class="mf">12.37</span><span class="p">],</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;$H_3PO_4$&quot;</span><span class="p">,</span> <span class="s2">&quot;$H_2PO_4^-$&quot;</span><span class="p">,</span> <span class="s2">&quot;$HPO_4^{2-}$&quot;</span><span class="p">,</span> <span class="s2">&quot;$PO_4^{3-}$&quot;</span><span class="p">])</span>
 <span class="n">ammonium</span> <span class="o">=</span> <span class="n">Acid</span><span class="p">([</span><span class="mf">9.24</span><span class="p">],</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;$NH_4^+$&quot;</span><span class="p">,</span> <span class="s2">&quot;$NH_3$&quot;</span><span class="p">])</span>
@@ -120,7 +120,9 @@
 <p>That, represented on the logarithmic diagram, appears as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotter</span> <span class="o">=</span> <span class="n">Plotter</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.visualization</span> <span class="kn">import</span> <span class="n">Plotter</span>
+
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">Plotter</span><span class="p">()</span>
 
 <span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ammonium</span><span class="p">)</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">phosphoric_acid</span><span class="p">)</span>
@@ -142,7 +144,9 @@
 <p>The process is straightforward: given an <code class="docutils literal notranslate"><span class="pre">Acid</span></code> object, the correspondig speces can be obtained by directly using the <code class="docutils literal notranslate"><span class="pre">[index]</span></code> operator and specifying as the <code class="docutils literal notranslate"><span class="pre">index</span></code> the deprotonation degree of the wanted species. The obtained <code class="docutils literal notranslate"><span class="pre">Species</span></code> object can be multiplied by a <code class="docutils literal notranslate"><span class="pre">float</span></code> coefficient and summed to or subtracted from other <code class="docutils literal notranslate"><span class="pre">Species</span></code> of <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> object to give the final <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> expression. To show how this can be done consider the following example in which the right and left sides of the protonic balance are constructed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">right_side</span> <span class="o">=</span> <span class="n">Hydronium</span> <span class="o">+</span> <span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.species</span> <span class="kn">import</span> <span class="n">Hydronium</span><span class="p">,</span> <span class="n">Hydroxide</span>
+
+<span class="n">right_side</span> <span class="o">=</span> <span class="n">Hydronium</span> <span class="o">+</span> <span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">left_side</span> <span class="o">=</span> <span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">ammonium</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Hydroxide</span>
 </pre></div>
 </div>
