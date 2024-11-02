@@ -142,7 +142,7 @@
 <p>The process is straightforward: given an <code class="docutils literal notranslate"><span class="pre">Acid</span></code> object, the correspondig speces can be obtained by directly using the <code class="docutils literal notranslate"><span class="pre">[index]</span></code> operator and specifying as the <code class="docutils literal notranslate"><span class="pre">index</span></code> the deprotonation degree of the wanted species. The obtained <code class="docutils literal notranslate"><span class="pre">Species</span></code> object can be multiplied by a <code class="docutils literal notranslate"><span class="pre">float</span></code> coefficient and summed to or subtracted from other <code class="docutils literal notranslate"><span class="pre">Species</span></code> of <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> object to give the final <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> expression. To show how this can be done consider the following example in which the right and left sides of the protonic balance are constructed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">right_side</span> <span class="o">=</span> <span class="n">Hydronium</span> <span class="o">+</span> <span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">right_side</span> <span class="o">=</span> <span class="n">Hydronium</span> <span class="o">+</span> <span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">left_side</span> <span class="o">=</span> <span class="n">phosphoric_acid</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">ammonium</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Hydroxide</span>
 </pre></div>
 </div>
@@ -160,7 +160,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e3c98f2887d88c24795363460ea4264947ed3a17fca5741a0e98f2837358649d.png" src="../_images/e3c98f2887d88c24795363460ea4264947ed3a17fca5741a0e98f2837358649d.png" />
+<img alt="../_images/fbf7ea384956454361cd713c7729c0df7cd83e454c5a5224070e8a08bcb5e267.png" src="../_images/fbf7ea384956454361cd713c7729c0df7cd83e454c5a5224070e8a08bcb5e267.png" />
 </div>
 </div>
 </section>

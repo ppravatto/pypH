@@ -46,7 +46,7 @@ To visualze the protonic balance on the logarithmic diagram one should represent
 The process is straightforward: given an `Acid` object, the correspondig speces can be obtained by directly using the `[index]` operator and specifying as the `index` the deprotonation degree of the wanted species. The obtained `Species` object can be multiplied by a `float` coefficient and summed to or subtracted from other `Species` of `Auxiliary` object to give the final `Auxiliary` expression. To show how this can be done consider the following example in which the right and left sides of the protonic balance are constructed:
 
 ```{code-cell} python
-right_side = Hydronium + phosphoric_acid[1] + 2.*phosphoric_acid[2]
+right_side = Hydronium + phosphoric_acid[1] + 2.*phosphoric_acid[0]
 left_side = phosphoric_acid[3] + ammonium[1] + Hydroxide
 ```
 
