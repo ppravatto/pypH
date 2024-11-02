@@ -109,7 +109,9 @@ is defined automatically by setting the pKa values.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pka</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – The list of pka values associated to the various acid dissociations.</p></li>
 <li><p><strong>concentration</strong> (<em>float</em>) – The molar concentration of the acid.</p></li>
-<li><p><strong>names</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – An optional field in which the user can specify names to each deprotonation product. (accepts latex)</p></li>
+<li><p><strong>names</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – An optional field in which the user can specify names to be assigned to each deprotonation product.
+If no name is given the system will automatically call the species with the scheme <cite>H_iX^{{n-i}-}” where
+`X</cite> is a progressive letter assigned starting form <cite>A</cite>.</p></li>
 </ul>
 </dd>
 </dl>
