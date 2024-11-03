@@ -3,17 +3,17 @@
 # API guide
 In this page a summary of all the functions and classes of the `pypH` library is given as a general reference.
 
-## `pypH.core` module
+## `pypH.acid` module
 
 ```{eval-rst}
-.. automodule:: pypH.core
+.. automodule:: pypH.acid
     :members:
 ```
 
-## `pypH.visualization` module
+## `pypH.spectator` module
 
 ```{eval-rst}
-.. automodule:: pypH.visualization
+.. automodule:: pypH.spectator
     :members:
 ```
 
@@ -21,5 +21,12 @@ In this page a summary of all the functions and classes of the `pypH` library is
 
 ```{eval-rst}
 .. automodule:: pypH.species
+    :members:
+```
+
+## `pypH.visualization` module
+
+```{eval-rst}
+.. automodule:: pypH.visualization
     :members:
 ```
