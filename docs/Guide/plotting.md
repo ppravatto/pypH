@@ -16,7 +16,7 @@ kernelspec:
 The starting point to plot a logarithmic diagram is to define the acid-base system. This can be done using instances of the the `Acid` class. The `Acid` class is a simple object capable of encoding a generic mono or polyprotic acid. An instance of the class can be created providing the $pKa$ of the acid and its total concentration. 
 
 ```{code-cell} python
-from pypH.core import Acid
+from pypH.acid import Acid
 
 oxalic_acid = Acid([1.25, 4.14], 0.05)
 

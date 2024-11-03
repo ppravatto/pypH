@@ -5,7 +5,8 @@ from typing import List, Optional, Dict, Tuple, Union
 import matplotlib.pyplot as plt
 import numpy as np
 
-from pypH.core import Acid, Spectator
+from pypH.acid import Acid, AcidSpecies
+from pypH.spectator import Spectator, SpectatorSpecies
 from pypH.species import Auxiliary
 
 class Plotter:
@@ -79,14 +80,24 @@ class Plotter:
             if species.name == "H_3O^+" or species.name == "OH^-":
                 continue
             
-            for acid in self.__acids:
-                if acid.id == species.acid_id:
+            if type(species) == AcidSpecies:
+                
+                for acid in self.__acids:
+                    if acid.id == species.acid_id:
 
-                    if species.index<0 or species.index>acid.nprotons:
-                        raise RuntimeError("Invalid deprotonation index found")
-                    break
-            else:
-                raise RuntimeError("Invalid acid ID found")
+                        if species.index<0 or species.index>acid.nprotons:
+                            raise RuntimeError("Invalid deprotonation index found")
+                        break
+                else:
+                    raise RuntimeError("Invalid acid ID found")
+            
+            elif type(species) == SpectatorSpecies:
+
+                for spectator in self.__spectators:
+                    if spectator.id == species.spectator_id:
+                        break
+                else:
+                    raise RuntimeError("Invalid acid ID found")
 
         self.__auxiliaries[name] = [auxiliary, color]
 
@@ -152,9 +163,15 @@ class Plotter:
                         elif species.name == "OH^-":
                             value += coefficient * 10 ** (-14 + pH)
 
-                        else:
+                        elif type(species) == AcidSpecies:
                             i = [acid.id for acid in self.__acids].index(species.acid_id)
                             value += coefficient * self.__acids[i].concentration(species.index, pH)
+                        
+                        elif type(species) == SpectatorSpecies:
+                            i = [spectator.id for spectator in self.__spectators].index(species.spectator_id)
+                            value += coefficient * self.__spectators[i].concentration
+                        else:
+                            RuntimeError("Unexpected behavior: unknown species has been found")
 
                     conc.append(value)
 
