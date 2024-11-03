@@ -5,7 +5,7 @@ from typing import List, Optional, Dict, Tuple, Union
 import matplotlib.pyplot as plt
 import numpy as np
 
-from pypH.core import Acid
+from pypH.core import Acid, Spectator
 from pypH.species import Auxiliary
 
 class Plotter:
@@ -18,27 +18,30 @@ class Plotter:
 
     def __init__(self) -> None:
         self.__acids: List[Acid] = []
-        self.__auxiliaries: Dict[str, List[Auxiliary, str]] = {}
+        self.__spectators: List[Spectator] = []
+        self.__auxiliaries: Dict[str, List[Auxiliary, str]] = {}   
 
-    def add(self, acid: Acid) -> None:
+    def add(self, element: Union[Acid, Spectator]) -> None:
         """
         Funtion used to add an acid species to the list of acids.
 
         Parameters
         ----------
-        acid: Acid
-            The acid class enconding the properties and concentration of the acid.
+        element: Union[Acid, Spectator
+            The `Acid` or `Spectator` class enconding the properties and concentration of the species.
 
         Raises
         ------
         TypeError
-            Exception raised if the `acid` argument is not of `Acid` type.
+            Exception raised if the `element` argument is not of `Acid` nor `Spectator` type.
         """
-
-        if type(acid) != Acid:
-            raise TypeError("Acid class object expected as argument")
-
-        self.__acids.append(acid)
+        if type(element) == Acid:
+            self.__acids.append(element)
+        elif type(element) == Spectator:
+            self.__spectators.append(element)
+        else:
+            raise TypeError("The functions requires `Acid` or `Spectator` objects-")
+        
 
     def add_auxiliary(self, auxiliary: Auxiliary, name: Optional[str] = None, color: Optional[str] = None):
         """
@@ -87,7 +90,6 @@ class Plotter:
 
         self.__auxiliaries[name] = [auxiliary, color]
 
-
     def plot(
         self,
         pH_range: List[float] = [0, 14],
@@ -133,6 +135,9 @@ class Plotter:
                 plt.semilogy(
                     pH_scale, conc, label=None if acid.names is None else acid.names[i]
                 )
+        
+        for spectator in self.__spectators:
+            plt.semilogy(pH_range, [spectator.concentration, spectator.concentration], label=spectator.name)
 
         if self.__auxiliaries != {}:
             for name, [auxiliary, color] in self.__auxiliaries.items():

@@ -96,6 +96,14 @@ class Acid:
 
     @property
     def id(self) -> int:
+        """
+        The univocal ID that can be used to identiy the `Acid`.
+
+        Reutrns
+        -------
+        int
+            The ID of the acid.
+        """
         return self.__id
 
     @property
@@ -154,3 +162,60 @@ class Acid:
 
         return self.__Ca / factor
 
+
+
+class Spectator:
+    """
+    The `Spectator` class encodes a generic spectator species with no acid-base properties. 
+
+    Parameters
+    ----------
+    name: str
+        The name of the spectator species. (Accepts LaTeX)
+    concentration: float
+        The molar concentration of the species.
+    """
+
+    __spectator_class_id = 0
+
+    def __init__(self, name: str, concentration: float):
+        self.__id = deepcopy(Spectator.__spectator_class_id)
+        self.__name = name
+        self.__concentration = float(concentration)
+        Spectator.__spectator_class_id += 1
+    
+    @property
+    def id(self) -> int:
+        """
+        The univocal ID that can be used to identiy the `Spectator` species.
+
+        Reutrns
+        -------
+        int
+            The ID of the spectator species
+        """
+        return self.__id
+
+    @property
+    def name(self) -> str:
+        """
+        The name of the spectator species.
+
+        Returns
+        -------
+        str
+            The string containing the name of the spectator species.
+        """
+        return self.__name
+    
+    @property
+    def concentration(self) -> float:
+        """
+        The concentration of the spectator species.
+
+        Returns
+        -------
+        str
+            The float indicating the concentration of the spectator species in mol/L.  
+        """
+        return self.__concentration
