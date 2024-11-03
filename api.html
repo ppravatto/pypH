@@ -146,6 +146,19 @@ If no name is given the system will automatically call the species with the sche
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pypH.core.Acid.id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pypH.core.Acid.id" title="Link to this definition"></a></dt>
+<dd><p>The univocal ID that can be used to identiy the <cite>Acid</cite>.</p>
+<section id="reutrns">
+<h3>Reutrns<a class="headerlink" href="#reutrns" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>int</dt><dd><p>The ID of the acid.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pypH.core.Acid.names">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypH.core.Acid.names" title="Link to this definition"></a></dt>
 <dd><p>The names associated to each deprotonation product.</p>
@@ -175,6 +188,61 @@ If no name is given the system will automatically call the species with the sche
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="pypH.core.Spectator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypH.core.</span></span><span class="sig-name descname"><span class="pre">Spectator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concentration</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.core.Spectator" title="Link to this definition"></a></dt>
+<dd><p>The <cite>Spectator</cite> class encodes a generic spectator species with no acid-base properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of the spectator species. (Accepts LaTeX)</p></li>
+<li><p><strong>concentration</strong> (<em>float</em>) – The molar concentration of the species.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="pypH.core.Spectator.concentration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">concentration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#pypH.core.Spectator.concentration" title="Link to this definition"></a></dt>
+<dd><p>The concentration of the spectator species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The float indicating the concentration of the spectator species in mol/L.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypH.core.Spectator.id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pypH.core.Spectator.id" title="Link to this definition"></a></dt>
+<dd><p>The univocal ID that can be used to identiy the <cite>Spectator</cite> species.</p>
+<section id="id1">
+<h3>Reutrns<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>int</dt><dd><p>The ID of the spectator species</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pypH.core.Spectator.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pypH.core.Spectator.name" title="Link to this definition"></a></dt>
+<dd><p>The name of the spectator species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The string containing the name of the spectator species.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-pypH.visualization">
 <span id="pyph-visualization-module"></span><h2><code class="docutils literal notranslate"><span class="pre">pypH.visualization</span></code> module<a class="headerlink" href="#module-pypH.visualization" title="Link to this heading"></a></h2>
@@ -189,14 +257,14 @@ solve specific problems (e.g. solution based on protonic balance)</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pypH.visualization.Plotter.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">acid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.visualization.Plotter.add" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.visualization.Plotter.add" title="Link to this definition"></a></dt>
 <dd><p>Funtion used to add an acid species to the list of acids.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>acid</strong> (<a class="reference internal" href="#pypH.core.Acid" title="pypH.core.Acid"><em>Acid</em></a>) – The acid class enconding the properties and concentration of the acid.</p>
+<dd class="field-odd"><p><strong>element</strong> (<em>Union</em><em>[</em><a class="reference internal" href="#pypH.core.Acid" title="pypH.core.Acid"><em>Acid</em></a><em>, </em><a class="reference internal" href="#pypH.core.Spectator" title="pypH.core.Spectator"><em>Spectator</em></a>) – The <cite>Acid</cite> or <cite>Spectator</cite> class enconding the properties and concentration of the species.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>TypeError</strong> – Exception raised if the <cite>acid</cite> argument is not of <cite>Acid</cite> type.</p>
+<dd class="field-even"><p><strong>TypeError</strong> – Exception raised if the <cite>element</cite> argument is not of <cite>Acid</cite> nor <cite>Spectator</cite> type.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
