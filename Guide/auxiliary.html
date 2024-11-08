@@ -41,7 +41,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="API guide" href="../api.html" />
-    <link rel="prev" title="Basic plotting" href="plotting.html" /> 
+    <link rel="prev" title="Basic usage" href="plotting.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,7 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../user-guide.html">User guide</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="theory.html">Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html">Basic plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Basic usage</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Species and Auxiliary functions</a></li>
 </ul>
 </li>
@@ -97,7 +97,7 @@
             <a href="../_sources/Guide/auxiliary.md" rel="nofollow"> View page source</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="plotting.html" class="btn btn-neutral float-left" title="Basic plotting" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plotting.html" class="btn btn-neutral float-left" title="Basic usage" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../api.html" class="btn btn-neutral float-right" title="API guide" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -107,13 +107,13 @@
              
   <section class="tex2jax_ignore mathjax_ignore" id="species-and-auxiliary-functions">
 <span id="guide-auxiliary"></span><h1>Species and Auxiliary functions<a class="headerlink" href="#species-and-auxiliary-functions" title="Link to this heading"></a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">Plotter</span></code> class also supports the definition of auxiliary curves. These are combination of concentrations of various species in solution and are very useful in the solution of many different acid-base problem. For example, by using auxiliary curves, on can easily visualize the point in which the protonic balance of a given solution is satisfied. To do so, however, we must discuss how simbolic expression can be constructed in the <code class="docutils literal notranslate"><span class="pre">pypH</span></code> environment.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">System</span></code> class also supports the definition of auxiliary curves. These are combination of concentrations of various species in solution and are very useful in the solution of many different acid-base problem. For example, by using auxiliary curves, one can easily visualize the point in which the protonic balance of a given solution is satisfied. To do so, however, we must discuss how simbolic expression can be constructed in the <code class="docutils literal notranslate"><span class="pre">pypH</span></code> environment.</p>
 <section id="the-species-objects-logic">
 <h2>The <code class="docutils literal notranslate"><span class="pre">Species</span></code> objects logic<a class="headerlink" href="#the-species-objects-logic" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">pypH</span></code> library has been developed with the logic of providing the user with an almost pen an paper experience in which expressions involving concentrations of species in solution can be treated directly in an algebric expression.</p>
 <p>What you have seen so far in the <a class="reference internal" href="plotting.html#guide-basic"><span class="std std-ref">basic plotting tutorial</span></a> was the definition of an generic <code class="docutils literal notranslate"><span class="pre">Acid</span></code> system that takes into account all its possible deprotonation states and can be used to model its behavior in solution. This operation sets the concentration of the acid and it’s <span class="math notranslate nohighlight">\(pKa\)</span> allowing the generation of its logarithmic diagram.</p>
-<p>If, however, we want to write a symbolic expression involving, for example, the concentration of a given deprotonation state, we must find an univocal way of referring to a given species derived from the acid deprotonation. This, in the <code class="docutils literal notranslate"><span class="pre">pypH</span></code> environment can be done using the <code class="docutils literal notranslate"><span class="pre">Species</span></code> class and it’s derived subclasses <code class="docutils literal notranslate"><span class="pre">AcidSpecies</span></code> and <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> species.</p>
-<p>To obtain the symbolic representation of a given species it is sufficient to operate using the <code class="docutils literal notranslate"><span class="pre">()</span></code> round bracket operator on the base <code class="docutils literal notranslate"><span class="pre">Acid</span></code> or <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> class. As an example, referring to the oxalic acid case presented before, the reference to the mono-acid oxalate ion can be obtained from the <code class="docutils literal notranslate"><span class="pre">Acid</span></code> object by specifying the deprotonation index (1) of the species:</p>
+<p>If, however, we want to write a symbolic expression involving, for example, the concentration of a given deprotonation state, we must find an univocal way of referring to a given species derived from the acid deprotonation. This, in the <code class="docutils literal notranslate"><span class="pre">pypH</span></code> environment can be done using the <code class="docutils literal notranslate"><span class="pre">Species</span></code> class and it’s derived subclasses <code class="docutils literal notranslate"><span class="pre">AcidSpecies</span></code> and <code class="docutils literal notranslate"><span class="pre">SpectatorSpecies</span></code> objects.</p>
+<p>To obtain the symbolic representation of a given species it is sufficient to operate using the <code class="docutils literal notranslate"><span class="pre">()</span></code> round bracket operator on the base <code class="docutils literal notranslate"><span class="pre">Acid</span></code> or <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> class. As an example, referring to the oxalic acid case presented before, the reference to the mono-acid oxalate ion can be obtained from the <code class="docutils literal notranslate"><span class="pre">Acid</span></code> object by specifying the deprotonation index <code class="docutils literal notranslate"><span class="pre">(1)</span></code> of the species:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.acid</span> <span class="kn">import</span> <span class="n">Acid</span>
@@ -134,7 +134,7 @@ AcidSpecies[id: 0, deprot. idx: 1, name: $HA^-$]
 </div>
 </div>
 </div>
-<p>A <code class="docutils literal notranslate"><span class="pre">Species</span></code> object is can be summed to and subtracted from other <code class="docutils literal notranslate"><span class="pre">Species</span></code> and <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> object leading to an <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> object representing a symbolic algebric expression. As an example if we want to construct the expression <span class="math notranslate nohighlight">\([HOx^-] + 2[Ox^{2-}]\)</span> we can operate as follows:</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">Species</span></code> object can be summed to and subtracted from other <code class="docutils literal notranslate"><span class="pre">Species</span></code> and <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> object leading to an <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> object representing a symbolic algebric expression. As an example if we want to construct the expression <span class="math notranslate nohighlight">\([HOx^-] + 2[Ox^{2-}]\)</span> we can operate as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.acid</span> <span class="kn">import</span> <span class="n">Acid</span>
@@ -199,9 +199,9 @@ $1.0*[PO_4^{3-}]+1.0*[NH_3]+1.0*[OH^-]$
 <p>The auxiliary curves can now be added to the plot using the <code class="docutils literal notranslate"><span class="pre">add_auxiliary</span></code> function according to:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.visualization</span> <span class="kn">import</span> <span class="n">Plotter</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.system</span> <span class="kn">import</span> <span class="n">System</span>
 
-<span class="n">plotter</span> <span class="o">=</span> <span class="n">Plotter</span><span class="p">()</span>
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
 
 <span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">phosphoric_acid</span><span class="p">)</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ammonium</span><span class="p">)</span>
@@ -209,7 +209,7 @@ $1.0*[PO_4^{3-}]+1.0*[NH_3]+1.0*[OH^-]$
 <span class="n">plotter</span><span class="o">.</span><span class="n">add_auxiliary</span><span class="p">(</span><span class="n">right_side</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;r.h.s&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add_auxiliary</span><span class="p">(</span><span class="n">left_side</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;l.h.s&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
 
-<span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">concentration_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot_logarithmic_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">concentration_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>

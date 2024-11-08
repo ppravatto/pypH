@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Basic plotting &mdash; pypH User Guide</title>
+  <title>Basic usage &mdash; pypH User Guide</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
@@ -68,7 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../user-guide.html">User guide</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="theory.html">Theory</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Basic plotting</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Basic usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auxiliary.html">Species and Auxiliary functions</a></li>
 </ul>
 </li>
@@ -92,7 +92,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../intro.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../user-guide.html">User guide</a></li>
-      <li class="breadcrumb-item active">Basic plotting</li>
+      <li class="breadcrumb-item active">Basic usage</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/Guide/plotting.md" rel="nofollow"> View page source</a>
       </li>
@@ -105,9 +105,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="basic-plotting">
-<span id="guide-basic"></span><h1>Basic plotting<a class="headerlink" href="#basic-plotting" title="Link to this heading"></a></h1>
-<p>The starting point to plot a logarithmic diagram is to define the acid-base system. This can be done using instances of the the <code class="docutils literal notranslate"><span class="pre">Acid</span></code> class. The <code class="docutils literal notranslate"><span class="pre">Acid</span></code> class is a simple object capable of encoding a generic mono or polyprotic acid. An instance of the class can be created providing the <span class="math notranslate nohighlight">\(pKa\)</span> of the acid and its total concentration.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-usage">
+<span id="guide-basic"></span><h1>Basic usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h1>
+<p>The core of the <code class="docutils literal notranslate"><span class="pre">pypH</span></code> library is represented the <code class="docutils literal notranslate"><span class="pre">System</span></code>class. This class represents a generic system of acid-base equilibrium reactions happening simultaneously within a solution. To define a <code class="docutils literal notranslate"><span class="pre">System</span></code> class object one should provide all the acid-base species and the eventually relevant spectator species. These are in turn represented in software by the <code class="docutils literal notranslate"><span class="pre">Acid</span></code> and <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> classes.</p>
+<section id="the-simple-case-of-a-single-acid">
+<h2>The simple case of a single acid<a class="headerlink" href="#the-simple-case-of-a-single-acid" title="Link to this heading"></a></h2>
+<p>Let us start discussing the working of the library by showing how the logarithmic diagram of a single acid species can be plotted. For this example let us consider a <span class="math notranslate nohighlight">\(0.05M\)</span> solution of oxalic acid.</p>
+<p>The starting point of the operation is to define an <code class="docutils literal notranslate"><span class="pre">Acid</span></code> object that will represent our oxalic acid species in solution. The <code class="docutils literal notranslate"><span class="pre">Acid</span></code> class is a simple object capable of encoding a generic mono or polyprotic acid. An instance of the class can be created providing the <span class="math notranslate nohighlight">\(pKa\)</span> of the acid and its total concentration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.acid</span> <span class="kn">import</span> <span class="n">Acid</span>
@@ -130,15 +134,15 @@
 </div>
 </div>
 </div>
-<p>Once the acid system has been defined it can be passed to the <code class="docutils literal notranslate"><span class="pre">Plotter</span></code> class to generate the corresponding logarithmic diagram:</p>
+<p>Once the acid system has been defined it can be passed to the <code class="docutils literal notranslate"><span class="pre">System</span></code> class to generate the acid-base system representing the desired solution. Please notice how in this case the operation is trivial since the oxalic acid is the only species present in the solution. A <code class="docutils literal notranslate"><span class="pre">System</span></code> object however a more generic object that, as it will be shown further on in this guide, can support multiple <code class="docutils literal notranslate"><span class="pre">Acid</span></code> and <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> objects and represents complex acid-base systems. Once the desired <code class="docutils literal notranslate"><span class="pre">System</span></code> object has been defined the corresponding logarithmic diagram can be easily plotted according to:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.visualization</span> <span class="kn">import</span> <span class="n">Plotter</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.system</span> <span class="kn">import</span> <span class="n">System</span>
 
-<span class="n">plotter</span> <span class="o">=</span> <span class="n">Plotter</span><span class="p">()</span>
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">oxalic_acid</span><span class="p">)</span>
 
-<span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot_logarithmic_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -146,15 +150,15 @@
 <img alt="../_images/51c3e253aa1440785c681fe4937bf8713ccc1d39d5c69f6a8dffefaf47fd57ae.png" src="../_images/51c3e253aa1440785c681fe4937bf8713ccc1d39d5c69f6a8dffefaf47fd57ae.png" />
 </div>
 </div>
-<p>Please notice how the names of the deprotonation speces have automatically been set to <span class="math notranslate nohighlight">\(H_2A\)</span>, <span class="math notranslate nohighlight">\(HA^{-}\)</span> and <span class="math notranslate nohighlight">\(A^{2-}\)</span> by the class constructor. If desired, these labels can be customized by the user by directly listing the desired name in the class constructor. To do so, a list of strings, given in order from the completely protonated form to the completely deprotonated one, can be given as the <code class="docutils literal notranslate"><span class="pre">names</span></code> variable. Latex syntax is accepted. As an example, the previous plot can be customized as follows:</p>
+<p>Please notice how the names of the deprotonation speces have automatically been set to <span class="math notranslate nohighlight">\(H_2A\)</span>, <span class="math notranslate nohighlight">\(HA^{-}\)</span> and <span class="math notranslate nohighlight">\(A^{2-}\)</span> by the <code class="docutils literal notranslate"><span class="pre">Acid</span></code> class constructor. If desired, these labels can be customized by the user by directly listing the desired name in the class constructor. To do so, a list of strings, given in order from the completely protonated form to the completely deprotonated one, can be given as the <code class="docutils literal notranslate"><span class="pre">names</span></code> variable. LaTeX syntax is accepted. As an example, the previous plot can be customized as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oxalic_acid</span> <span class="o">=</span> <span class="n">Acid</span><span class="p">([</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">4.14</span><span class="p">],</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;$H_2Ox$&quot;</span><span class="p">,</span> <span class="s2">&quot;$HOx^-$&quot;</span><span class="p">,</span> <span class="s2">&quot;$Ox^{2-}$&quot;</span> <span class="p">])</span>
 
-<span class="n">plotter</span> <span class="o">=</span> <span class="n">Plotter</span><span class="p">()</span>
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">oxalic_acid</span><span class="p">)</span>
 
-<span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot_logarithmic_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -162,20 +166,21 @@
 <img alt="../_images/bc83997baf43ab643e9491a7fdf1dcc8bbc86930e2683dcbd07f9556b170bb14.png" src="../_images/bc83997baf43ab643e9491a7fdf1dcc8bbc86930e2683dcbd07f9556b170bb14.png" />
 </div>
 </div>
-<section id="spectator-species">
-<h2><code class="docutils literal notranslate"><span class="pre">Spectator</span></code> species<a class="headerlink" href="#spectator-species" title="Link to this heading"></a></h2>
+</section>
+<section id="using-spectator-species">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> species<a class="headerlink" href="#using-spectator-species" title="Link to this heading"></a></h2>
 <p>Besides acid-base active species the <code class="docutils literal notranslate"><span class="pre">pypH</span></code> library also allows the representation of spectator species and ions. This can be useful for example in the resolution of protonic balances of various systems (e.g. salts or strong acid or bases). This can be done using the the <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> class. An object of the <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> class can be initialized by specifying a name for the species and a concentration value. As an example the case of the dissociation of a <span class="math notranslate nohighlight">\(0.01M\)</span> hydrochloric acid solution can be represented on the logarithmic diagram as:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.spectator</span> <span class="kn">import</span> <span class="n">Spectator</span>
-<span class="kn">from</span> <span class="nn">pypH.visualization</span> <span class="kn">import</span> <span class="n">Plotter</span>
+<span class="kn">from</span> <span class="nn">pypH.system</span> <span class="kn">import</span> <span class="n">System</span>
 
 <span class="n">chloride</span> <span class="o">=</span> <span class="n">Spectator</span><span class="p">(</span><span class="s2">&quot;$Cl^-$&quot;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
 
-<span class="n">plotter</span> <span class="o">=</span> <span class="n">Plotter</span><span class="p">()</span>
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
 <span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chloride</span><span class="p">)</span>
 
-<span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot_logarithmic_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -183,7 +188,7 @@
 <img alt="../_images/d1466290eb2ff32608087873eb8006f2ab683edf7b787349fde1ac11d49c5fb4.png" src="../_images/d1466290eb2ff32608087873eb8006f2ab683edf7b787349fde1ac11d49c5fb4.png" />
 </div>
 </div>
-<p>that, according to the protonic balance <span class="math notranslate nohighlight">\([H_3O^+] = [OH^-] + [Cl^-]\)</span>, confirm the expected solution of <span class="math notranslate nohighlight">\(pH=2\)</span>. Please notice how the <code class="docutils literal notranslate"><span class="pre">add</span></code> method of the <code class="docutils literal notranslate"><span class="pre">Plotter</span></code> class automatically detects the type of term given to it (either <code class="docutils literal notranslate"><span class="pre">Acid</span></code> or <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> object).</p>
+<p>that, according to the protonic balance <span class="math notranslate nohighlight">\([H_3O^+] = [OH^-] + [Cl^-]\)</span>, confirm the expected solution of <span class="math notranslate nohighlight">\(pH=2\)</span>. Please notice how the <code class="docutils literal notranslate"><span class="pre">add</span></code> method of the <code class="docutils literal notranslate"><span class="pre">System</span></code> class automatically detects the type of term given to it (either <code class="docutils literal notranslate"><span class="pre">Acid</span></code> or <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> object).</p>
 </section>
 </section>
 
