@@ -360,6 +360,7 @@ class System:
         delta_volume: float,
         use_dilution: bool = True,
         total_titrant_volume: Optional[float] = None,
+        eabs: float = 1e-6,
         figsize: Tuple[float] = [12, 9],
         save_path: Optional[str] = None,
     ) -> None:
@@ -384,6 +385,8 @@ class System:
             If set to `True` (default) will consider the effect of dilution.
         total_titrant_volume: Optional[float]
             If set to a value different from `None` sets the volume of titrant at which the titration is stopped.
+        eabs: float
+            The maximum absolute error to be used in the numerical solution of the protonic balance. (default: 1e-6)
         figsize: Tuple[float]
             The tuple of float values setting the size of the figure.
         save_path: Optional[str]
@@ -402,7 +405,7 @@ class System:
         sign *= -1.0 if with_acid is True else 1.0
 
         volume_list = [0.0]
-        pH_list = [self.solve(protonic_balance)]
+        pH_list = [self.solve(protonic_balance, eabs=eabs)]
 
         titrant = Spectator("Titrant", titrant_concentration)
         new_balance = protonic_balance + sign * titrant()
@@ -422,7 +425,7 @@ class System:
             diluted_titrant = titrant.dilute(titrant_dilution_ratio, keep_id=True)
 
             new_system.add(diluted_titrant)
-            pH = new_system.solve(new_balance)
+            pH = new_system.solve(new_balance, eabs=eabs)
 
             pH_list.append(pH)
 
