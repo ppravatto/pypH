@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from copy import deepcopy
 from typing import List, Optional, Dict, Tuple, Union
 
 import matplotlib.pyplot as plt
@@ -163,6 +164,33 @@ class System:
         self.__validate_auxiliary(auxiliary)
         self.__auxiliaries[name] = [auxiliary, color]
 
+    def dilute(self, dilution_ratio: float) -> System:
+        """
+        The function generates a new `System` in which a global dilution has been applied to
+        all the species. Please notiche that the resulting `System` object will keep the ID of
+        all the original species.
+
+        Arguments
+        ---------
+        dilution_ratio: float
+            The dilution ratio to be applied.
+
+        Returns
+        -------
+        System
+            The system object with the new reduced concentrations.
+        """
+        obj = System()
+        obj.__acids = [
+            acid.dilute(dilution_ratio, keep_id=True) for acid in self.__acids
+        ]
+        obj.__spectators = [
+            spectator.dilute(dilution_ratio, keep_id=True)
+            for spectator in self.__spectators
+        ]
+        obj.__auxiliaries = deepcopy(self.__auxiliaries)
+        return obj
+
     def plot_logarithmic_diagram(
         self,
         pH_range: List[float] = [0, 14],
@@ -256,12 +284,12 @@ class System:
     def solve(
         self,
         first: Auxiliary,
-        second: Auxiliary,
+        second: Optional[Auxiliary] = None,
         pH_range: Tuple[float, float] = (0.0, 14.0),
         eabs: float = 1e-6,
     ) -> float:
         """
-        Numerically comutes the pH at which the equality `first == second` is satisfied. The function
+        Numerically computes the pH at which the equality `first == second` is satisfied. The function
         uses the dicotomic method in the range `pH_range` to solve the proble iteratively until the
         absolute variation between the terms is smaller then `eabs`.
 
@@ -269,13 +297,13 @@ class System:
         ---------
         first: Auxiliary
             The expression for the left side of the equation
-        second: Auxiliary
-            The expression for the right side of the equation
+        second: Optional[Auxiliary]
+            The expression for the right side of the equation. If None the solver will compute `first == 0.`.
         pH_range: Tuple[float, float]
             The pH range in which the solution must be searched. (default: (0., 14.))
         eabs: float
             The maximum absolute error between iteration points to stop the dicotomic search. (default: 1e-6)
-        
+
         Raises
         ------
         TypeError
@@ -283,7 +311,7 @@ class System:
         RuntimeError
             Exception raised if the deprotonation index of the Species is not compatible with the
             selected acid or if the acid ID does not match one of the acid in the system.
-        
+
         Returns
         -------
         float
@@ -291,12 +319,18 @@ class System:
         """
 
         self.__validate_auxiliary(first)
-        self.__validate_auxiliary(second)
+
+        expression = None
+        if second is not None:
+            self.__validate_auxiliary(second)
+            expression = first - second
+        else:
+            expression = first
 
         left, right = min(pH_range), max(pH_range)
 
-        lvalue = self.__evaluate_auxiliary(first - second, left)
-        rvalue = self.__evaluate_auxiliary(first - second, right)
+        lvalue = self.__evaluate_auxiliary(expression, left)
+        rvalue = self.__evaluate_auxiliary(expression, right)
 
         while True:
             middle = 0.5 * (left + right)
@@ -304,7 +338,7 @@ class System:
             if right - left < eabs:
                 return middle
 
-            mvalue = self.__evaluate_auxiliary(first - second, middle)
+            mvalue = self.__evaluate_auxiliary(expression, middle)
 
             if mvalue == 0.0:
                 return middle
@@ -316,3 +350,106 @@ class System:
                 lvalue = mvalue
             else:
                 raise RuntimeError("No change in sign found in dicotomic range.")
+
+    def plot_titration_curve(
+        self,
+        protonic_balance: Auxiliary,
+        with_acid: bool,
+        solution_volume: float,
+        titrant_concentration: float,
+        delta_volume: float,
+        use_dilution: bool = True,
+        total_titrant_volume: Optional[float] = None,
+        figsize: Tuple[float] = [12, 9],
+        save_path: Optional[str] = None,
+    ) -> None:
+        """
+        Plot the titration curve for the system. The function can be used to plot titration using both
+        strong acid or bases. The titration type can be selected using the `with_acid` option (`True`
+        for strong acid, `False` for strong base).
+
+        Arguments
+        ---------
+        protonic_balance: Auxiliary
+            The protonic balance of the initial solution. (without the titrant term)
+        with_acid: bool
+            If set to `True` will simulate a titration with strong acid if set to `False` with a strong base.
+        solution_volume: float
+            The total volume of the solution to be titrated in mL.
+        titrant_concentration: float
+            The concentration of the titrant solution in mol/L.
+        delta_volume: float
+            The size of the titrant volume steps used in the simulation.
+        use_dilution: bool
+            If set to `True` (default) will consider the effect of dilution.
+        total_titrant_volume: Optional[float]
+            If set to a value different from `None` sets the volume of titrant at which the titration is stopped.
+        figsize: Tuple[float]
+            The tuple of float values setting the size of the figure.
+        save_path: Optional[str]
+            The path of the file where to save the titration diagram image. If set to None (default)
+            will only display the result to the user without saving the plot.
+        """
+
+        species_names = [species.name for species in protonic_balance.species]
+
+        if "H_3O^+" not in species_names:
+            raise RuntimeError("No hydronium ion term found in protonic balance")
+
+        hydronium_coeff = protonic_balance.coefficients[species_names.index("H_3O^+")]
+
+        sign = +1.0 if hydronium_coeff > 0 else -1.0
+        sign *= -1.0 if with_acid is True else 1.0
+
+        volume_list = [0.0]
+        pH_list = [self.solve(protonic_balance)]
+
+        titrant = Spectator("Titrant", titrant_concentration)
+        new_balance = protonic_balance + sign * titrant()
+
+        while True:
+
+            volume = volume_list[-1] + delta_volume
+            volume_list.append(volume)
+
+            if use_dilution is True:
+                dilution_ratio = solution_volume / (solution_volume + volume)
+                new_system = self.dilute(dilution_ratio)
+            else:
+                new_system = deepcopy(self)
+
+            titrant_dilution_ratio = volume / (solution_volume + volume)
+            diluted_titrant = titrant.dilute(titrant_dilution_ratio, keep_id=True)
+
+            new_system.add(diluted_titrant)
+            pH = new_system.solve(new_balance)
+
+            pH_list.append(pH)
+
+            if total_titrant_volume is not None and volume >= total_titrant_volume:
+                break
+
+            if with_acid is True:
+                if pH < -np.log10(0.1 * titrant_concentration):
+                    break
+            else:
+                if pH > 14.0 + np.log10(0.1 * titrant_concentration):
+                    break
+
+        plt.rc("font", **{"size": 16})
+        fig = plt.figure(figsize=figsize)
+
+        plt.plot(volume_list, pH_list)
+
+        plt.xlabel(r"Titrant volume ($mL$)", size=18)
+        plt.ylabel(r"$pH$", size=18)
+
+        plt.grid(which="major", c="#DDDDDD")
+        plt.grid(which="minor", c="#EEEEEE")
+
+        plt.tight_layout()
+
+        if save_path is not None:
+            plt.savefig(save_path, dpi=600)
+
+        plt.show()

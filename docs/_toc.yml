@@ -9,6 +9,7 @@ chapters:
     - file: Guide/theory
     - file: Guide/plotting
     - file: Guide/auxiliary
+    - file: Guide/titration
 
 - file: api    
 - file: contributor-guide

@@ -23,7 +23,7 @@ class Spectator:
         self.__name = name
         self.__concentration = float(concentration)
         Spectator.__spectator_class_id += 1
-    
+
     def __call__(self) -> SpectatorSpecies:
         return SpectatorSpecies(self.__id, self.__name)
 
@@ -62,6 +62,31 @@ class Spectator:
             The float indicating the concentration of the spectator species in mol/L.
         """
         return self.__concentration
+
+    def dilute(self, dilution_ratio: float, keep_id: bool = False) -> Spectator:
+        """
+        Generates a new `Spectator` object with a concentration lower than the starting
+        one by a factor equal to `dilution_ratio`.
+
+        Arguments
+        ---------
+        dilution_ratio: float
+            The dilution ratio to be applied.
+        keep_id: bool
+            If set to `True` will set the ID of the diluted spectator to the same
+            value of the undiluted one.
+
+        Returns
+        -------
+        Spectator
+            The spectator object with the new reduced concentration.
+        """
+        obj = Spectator(self.__name, dilution_ratio * self.__concentration)
+
+        if keep_id is True:
+            obj.__id = self.__id
+
+        return obj
 
 
 class SpectatorSpecies(Species):

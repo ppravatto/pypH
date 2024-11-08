@@ -130,6 +130,31 @@ class Acid:
         """
         return self.__names
 
+    def dilute(self, dilution_ratio: float, keep_id: bool = False) -> Acid:
+        """
+        Generates a new `Acid` object with a concentration lower than the starting
+        one by a factor equal to `dilution_ratio`.
+
+        Arguments
+        ---------
+        dilution_ratio: float
+            The dilution ratio to be applied.
+        keep_id: bool
+            If set to `True` will set the ID of the diluted acid to the same
+            value of the undiluted one.
+
+        Returns
+        -------
+        Acid
+            The acid object with the new reduced concentration.
+        """
+        obj = Acid(self.__pka, dilution_ratio * self.__Ca, names=self.__names)
+        
+        if keep_id is True:
+            obj.__id = self.__id
+
+        return obj
+
     def concentration(self, index: int, pH: float) -> float:
         """
         Compute the concentration of the user defined deprotonation state of the acid at the specified pH.
