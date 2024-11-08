@@ -49,3 +49,23 @@ plotter.add(oxalic_acid)
 
 plotter.plot(show_legend=True)
 ```
+
+## `Spectator` species
+
+Besides acid-base active species the `pypH` library also allows the representation of spectator species and ions. This can be useful for example in the resolution of protonic balances of various systems (e.g. salts or strong acid or bases). This can be done using the the `Spectator` class. An object of the `Spectator` class can be initialized by specifying a name for the species and a concentration value. As an example the case of the dissociation of a $0.01M$ hydrochloric acid solution can be represented on the logarithmic diagram as:
+
+
+```{code-cell} python
+from pypH.spectator import Spectator
+from pypH.visualization import Plotter
+
+chloride = Spectator("$Cl^-$", 0.01)
+
+plotter = Plotter()
+plotter.add(chloride)
+
+plotter.plot(show_legend=True)
+
+```
+
+that, according to the protonic balance $[H_3O^+] = [OH^-] + [Cl^-]$, confirm the expected solution of $pH=2$. Please notice how the `add` method of the `Plotter` class automatically detects the type of term given to it (either `Acid` or `Spectator` object).

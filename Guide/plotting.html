@@ -162,6 +162,29 @@
 <img alt="../_images/bc83997baf43ab643e9491a7fdf1dcc8bbc86930e2683dcbd07f9556b170bb14.png" src="../_images/bc83997baf43ab643e9491a7fdf1dcc8bbc86930e2683dcbd07f9556b170bb14.png" />
 </div>
 </div>
+<section id="spectator-species">
+<h2><code class="docutils literal notranslate"><span class="pre">Spectator</span></code> species<a class="headerlink" href="#spectator-species" title="Link to this heading"></a></h2>
+<p>Besides acid-base active species the <code class="docutils literal notranslate"><span class="pre">pypH</span></code> library also allows the representation of spectator species and ions. This can be useful for example in the resolution of protonic balances of various systems (e.g. salts or strong acid or bases). This can be done using the the <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> class. An object of the <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> class can be initialized by specifying a name for the species and a concentration value. As an example the case of the dissociation of a <span class="math notranslate nohighlight">\(0.01M\)</span> hydrochloric acid solution can be represented on the logarithmic diagram as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.spectator</span> <span class="kn">import</span> <span class="n">Spectator</span>
+<span class="kn">from</span> <span class="nn">pypH.visualization</span> <span class="kn">import</span> <span class="n">Plotter</span>
+
+<span class="n">chloride</span> <span class="o">=</span> <span class="n">Spectator</span><span class="p">(</span><span class="s2">&quot;$Cl^-$&quot;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">Plotter</span><span class="p">()</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chloride</span><span class="p">)</span>
+
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d1466290eb2ff32608087873eb8006f2ab683edf7b787349fde1ac11d49c5fb4.png" src="../_images/d1466290eb2ff32608087873eb8006f2ab683edf7b787349fde1ac11d49c5fb4.png" />
+</div>
+</div>
+<p>that, according to the protonic balance <span class="math notranslate nohighlight">\([H_3O^+] = [OH^-] + [Cl^-]\)</span>, confirm the expected solution of <span class="math notranslate nohighlight">\(pH=2\)</span>. Please notice how the <code class="docutils literal notranslate"><span class="pre">add</span></code> method of the <code class="docutils literal notranslate"><span class="pre">Plotter</span></code> class automatically detects the type of term given to it (either <code class="docutils literal notranslate"><span class="pre">Acid</span></code> or <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> object).</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
