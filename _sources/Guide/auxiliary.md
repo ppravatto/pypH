@@ -72,8 +72,8 @@ To visualze the protonic balance on the logarithmic diagram one should represent
 ```{code-cell} python
 from pypH.acid import Hydronium, Hydroxide
 
-right_side = Hydronium + phosphoric_acid(1) + 2.*phosphoric_acid(0)
-left_side = phosphoric_acid(3) + ammonium(1) + Hydroxide
+right_side = phosphoric_acid(3) + ammonium(1) + Hydroxide
+left_side = Hydronium + phosphoric_acid(1) + 2.*phosphoric_acid(0)
 
 print(right_side)
 print(left_side)
@@ -86,15 +86,26 @@ The auxiliary curves can now be added to the plot using the `add_auxiliary` func
 ```{code-cell} python
 from pypH.system import System
 
-plotter = System()
+system = System()
 
-plotter.add(phosphoric_acid)
-plotter.add(ammonium)
+system.add(phosphoric_acid)
+system.add(ammonium)
 
-plotter.add_auxiliary(right_side, name="r.h.s", color="red")
-plotter.add_auxiliary(left_side, name="l.h.s", color="blue")
+system.add_auxiliary(right_side, name="r.h.s", color="blue")
+system.add_auxiliary(left_side, name="l.h.s", color="red")
 
-plotter.plot_logarithmic_diagram(show_legend=True, concentration_range=(1e-6, 1.), figsize=(10, 7))
+system.plot_logarithmic_diagram(show_legend=True, concentration_range=(1e-6, 1.), figsize=(10, 7))
 ```
 
 As can be seen the protonic balance is satisfied at $pH \approx 8.05$.
+
+## Solving an auxiliary expression
+In what we have shown previously the $pH$ of a $0.01M$ diammonium phosphate $(NH_4)_2HPO_4$ solution was deducted graphically by looking at the logarithmic diagram. The `pypH` library however allows also the computation of numerical solutions to the problem. To do so, the protonic balance of the system can be passed to the `solve` method of the `System` class. This function will numerically evaluate the zeros of the expression by means of the dicotomic method. The $pH$ of the solution can, as such, be comuted according to:
+
+```{code-cell} python
+computed_pH = system.solve(left_side, right_side)
+
+print(f"The pH of the solution is {computed_pH:.4f}")
+```
+
+Very close to the value estimated before by graphical inspection.

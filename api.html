@@ -411,15 +411,18 @@ the choice to matplotlib color sequence.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>RuntimeError</strong> – Exception raised if the deprotonation index of the Species is not compatible with the
-    selected acid or if the acid ID does not match one of the acid in the system.</p>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – Exception raised if the auxiliary expression is not an <cite>Auxiliary</cite> type object.</p></li>
+<li><p><strong>RuntimeError</strong> – Exception raised if the deprotonation index of the Species is not compatible with the
+    selected acid or if the acid ID does not match one of the acid in the system.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pypH.system.System.plot_logarithmic_diagram">
-<span class="sig-name descname"><span class="pre">plot_logarithmic_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pH_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">14]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concentration_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1e-14,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[10,</span> <span class="pre">9]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.system.System.plot_logarithmic_diagram" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_logarithmic_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pH_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">14]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concentration_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1e-14,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[10,</span> <span class="pre">9]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.system.System.plot_logarithmic_diagram" title="Link to this definition"></a></dt>
 <dd><p>Funtion to plot the logarithmic diagram of the defined acid-base system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -430,10 +433,43 @@ the choice to matplotlib color sequence.</p></li>
 <li><p><strong>show_legend</strong> (<em>bool</em>) – If set to True will show the legend with the name of the traces (default: False)</p></li>
 <li><p><strong>legend_location</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em>) – The location of the legend as expressed bu matplotlib. (default: lower right)</p></li>
 <li><p><strong>figsize</strong> (<em>Tuple</em><em>[</em><em>float</em><em>]</em>) – The tuple of float values setting the size of the figure.</p></li>
+<li><p><strong>save_path</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The path of the file where to save the logarithmic diagram image. If set to None (default)
+will only display the result to the user without saving the plot.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypH.system.System.solve">
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">first</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">second</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">14.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eabs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.system.System.solve" title="Link to this definition"></a></dt>
+<dd><p>Numerically comutes the pH at which the equality <cite>first == second</cite> is satisfied. The function
+uses the dicotomic method in the range <cite>pH_range</cite> to solve the proble iteratively until the
+absolute variation between the terms is smaller then <cite>eabs</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>first</strong> (<a class="reference internal" href="#pypH.species.Auxiliary" title="pypH.species.Auxiliary"><em>Auxiliary</em></a>) – The expression for the left side of the equation</p></li>
+<li><p><strong>second</strong> (<a class="reference internal" href="#pypH.species.Auxiliary" title="pypH.species.Auxiliary"><em>Auxiliary</em></a>) – The expression for the right side of the equation</p></li>
+<li><p><strong>pH_range</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em>) – The pH range in which the solution must be searched. (default: (0., 14.))</p></li>
+<li><p><strong>eabs</strong> (<em>float</em>) – The maximum absolute error between iteration points to stop the dicotomic search. (default: 1e-6)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – Exception raised if the auxiliary expression is not an <cite>Auxiliary</cite> type object.</p></li>
+<li><p><strong>RuntimeError</strong> – Exception raised if the deprotonation index of the Species is not compatible with the
+    selected acid or if the acid ID does not match one of the acid in the system.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The pH value at which the equality is satisfied.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
 </dd>
 </dl>
 </dd></dl>

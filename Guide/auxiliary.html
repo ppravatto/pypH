@@ -180,8 +180,8 @@ AcidSpecies[id: 0, deprot. idx: 1, name: $HA^-$]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.acid</span> <span class="kn">import</span> <span class="n">Hydronium</span><span class="p">,</span> <span class="n">Hydroxide</span>
 
-<span class="n">right_side</span> <span class="o">=</span> <span class="n">Hydronium</span> <span class="o">+</span> <span class="n">phosphoric_acid</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">phosphoric_acid</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">left_side</span> <span class="o">=</span> <span class="n">phosphoric_acid</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">ammonium</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">Hydroxide</span>
+<span class="n">right_side</span> <span class="o">=</span> <span class="n">phosphoric_acid</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">ammonium</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">Hydroxide</span>
+<span class="n">left_side</span> <span class="o">=</span> <span class="n">Hydronium</span> <span class="o">+</span> <span class="n">phosphoric_acid</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">phosphoric_acid</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">right_side</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">left_side</span><span class="p">)</span>
@@ -189,8 +189,8 @@ AcidSpecies[id: 0, deprot. idx: 1, name: $HA^-$]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$1.0*[H_3O^+]+1.0*[H_2PO_4^-]+2.0*[H_3PO_4]$
-$1.0*[PO_4^{3-}]+1.0*[NH_3]+1.0*[OH^-]$
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$1.0*[PO_4^{3-}]+1.0*[NH_3]+1.0*[OH^-]$
+$1.0*[H_3O^+]+1.0*[H_2PO_4^-]+2.0*[H_3PO_4]$
 </pre></div>
 </div>
 </div>
@@ -201,23 +201,42 @@ $1.0*[PO_4^{3-}]+1.0*[NH_3]+1.0*[OH^-]$
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.system</span> <span class="kn">import</span> <span class="n">System</span>
 
-<span class="n">plotter</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
+<span class="n">system</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
 
-<span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">phosphoric_acid</span><span class="p">)</span>
-<span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ammonium</span><span class="p">)</span>
+<span class="n">system</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">phosphoric_acid</span><span class="p">)</span>
+<span class="n">system</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ammonium</span><span class="p">)</span>
 
-<span class="n">plotter</span><span class="o">.</span><span class="n">add_auxiliary</span><span class="p">(</span><span class="n">right_side</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;r.h.s&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
-<span class="n">plotter</span><span class="o">.</span><span class="n">add_auxiliary</span><span class="p">(</span><span class="n">left_side</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;l.h.s&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">system</span><span class="o">.</span><span class="n">add_auxiliary</span><span class="p">(</span><span class="n">right_side</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;r.h.s&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">system</span><span class="o">.</span><span class="n">add_auxiliary</span><span class="p">(</span><span class="n">left_side</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;l.h.s&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
 
-<span class="n">plotter</span><span class="o">.</span><span class="n">plot_logarithmic_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">concentration_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">system</span><span class="o">.</span><span class="n">plot_logarithmic_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">concentration_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/71541c011506508891fde50ec73c8391af3b4354c1804dcf59a992f8013bf1da.png" src="../_images/71541c011506508891fde50ec73c8391af3b4354c1804dcf59a992f8013bf1da.png" />
+<img alt="../_images/c8a0ee17a6acfa76979b726b0188d4c2da272cf30cfe51c13b3b83c71e44e388.png" src="../_images/c8a0ee17a6acfa76979b726b0188d4c2da272cf30cfe51c13b3b83c71e44e388.png" />
 </div>
 </div>
 <p>As can be seen the protonic balance is satisfied at <span class="math notranslate nohighlight">\(pH \approx 8.05\)</span>.</p>
+</section>
+<section id="solving-an-auxiliary-expression">
+<h2>Solving an auxiliary expression<a class="headerlink" href="#solving-an-auxiliary-expression" title="Link to this heading"></a></h2>
+<p>In what we have shown previously the <span class="math notranslate nohighlight">\(pH\)</span> of a <span class="math notranslate nohighlight">\(0.01M\)</span> diammonium phosphate <span class="math notranslate nohighlight">\((NH_4)_2HPO_4\)</span> solution was deducted graphically by looking at the logarithmic diagram. The <code class="docutils literal notranslate"><span class="pre">pypH</span></code> library however allows also the computation of numerical solutions to the problem. To do so, the protonic balance of the system can be passed to the <code class="docutils literal notranslate"><span class="pre">solve</span></code> method of the <code class="docutils literal notranslate"><span class="pre">System</span></code> class. This function will numerically evaluate the zeros of the expression by means of the dicotomic method. The <span class="math notranslate nohighlight">\(pH\)</span> of the solution can, as such, be comuted according to:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">computed_pH</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">left_side</span><span class="p">,</span> <span class="n">right_side</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The pH of the solution is </span><span class="si">{</span><span class="n">computed_pH</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The pH of the solution is 8.0545
+</pre></div>
+</div>
+</div>
+</div>
+<p>Very close to the value estimated before by graphical inspection.</p>
 </section>
 </section>
 
