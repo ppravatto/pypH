@@ -39,7 +39,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Contributor’s guide" href="contributor-guide.html" />
-    <link rel="prev" title="Species and Auxiliary functions" href="Guide/auxiliary.html" /> 
+    <link rel="prev" title="Visualizing titration curves" href="Guide/titration.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -89,7 +89,7 @@
             <a href="_sources/api.md" rel="nofollow"> View page source</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="Guide/auxiliary.html" class="btn btn-neutral float-left" title="Species and Auxiliary functions" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Guide/titration.html" class="btn btn-neutral float-left" title="Visualizing titration curves" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="contributor-guide.html" class="btn btn-neutral float-right" title="Contributor’s guide" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -141,6 +141,28 @@ If no name is given the system will automatically call the species with the sche
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypH.acid.Acid.dilute">
+<span class="sig-name descname"><span class="pre">dilute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dilution_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.acid.Acid.dilute" title="Link to this definition"></a></dt>
+<dd><p>Generates a new <cite>Acid</cite> object with a concentration lower than the starting
+one by a factor equal to <cite>dilution_ratio</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dilution_ratio</strong> (<em>float</em>) – The dilution ratio to be applied.</p></li>
+<li><p><strong>keep_id</strong> (<em>bool</em>) – If set to <cite>True</cite> will set the ID of the diluted acid to the same
+value of the undiluted one.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The acid object with the new reduced concentration.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pypH.acid.Acid" title="pypH.acid.Acid">Acid</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -241,6 +263,28 @@ other <cite>Species</cite> or <cite>Auxiliary</cite> objects and multiplication 
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypH.spectator.Spectator.dilute">
+<span class="sig-name descname"><span class="pre">dilute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dilution_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.spectator.Spectator.dilute" title="Link to this definition"></a></dt>
+<dd><p>Generates a new <cite>Spectator</cite> object with a concentration lower than the starting
+one by a factor equal to <cite>dilution_ratio</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dilution_ratio</strong> (<em>float</em>) – The dilution ratio to be applied.</p></li>
+<li><p><strong>keep_id</strong> (<em>bool</em>) – If set to <cite>True</cite> will set the ID of the diluted spectator to the same
+value of the undiluted one.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The spectator object with the new reduced concentration.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pypH.spectator.Spectator" title="pypH.spectator.Spectator">Spectator</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -421,6 +465,25 @@ the choice to matplotlib color sequence.</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pypH.system.System.dilute">
+<span class="sig-name descname"><span class="pre">dilute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dilution_ratio</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.system.System.dilute" title="Link to this definition"></a></dt>
+<dd><p>The function generates a new <cite>System</cite> in which a global dilution has been applied to
+all the species. Please notiche that the resulting <cite>System</cite> object will keep the ID of
+all the original species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dilution_ratio</strong> (<em>float</em>) – The dilution ratio to be applied.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The system object with the new reduced concentrations.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pypH.system.System" title="pypH.system.System">System</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pypH.system.System.plot_logarithmic_diagram">
 <span class="sig-name descname"><span class="pre">plot_logarithmic_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pH_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">14]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concentration_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1e-14,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[10,</span> <span class="pre">9]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.system.System.plot_logarithmic_diagram" title="Link to this definition"></a></dt>
 <dd><p>Funtion to plot the logarithmic diagram of the defined acid-base system.</p>
@@ -444,16 +507,43 @@ will only display the result to the user without saving the plot.</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pypH.system.System.plot_titration_curve">
+<span class="sig-name descname"><span class="pre">plot_titration_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protonic_balance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_acid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solution_volume</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titrant_concentration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_volume</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_dilution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_titrant_volume</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[12,</span> <span class="pre">9]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.system.System.plot_titration_curve" title="Link to this definition"></a></dt>
+<dd><p>Plot the titration curve for the system. The function can be used to plot titration using both
+strong acid or bases. The titration type can be selected using the <cite>with_acid</cite> option (<cite>True</cite>
+for strong acid, <cite>False</cite> for strong base).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>protonic_balance</strong> (<a class="reference internal" href="#pypH.species.Auxiliary" title="pypH.species.Auxiliary"><em>Auxiliary</em></a>) – The protonic balance of the initial solution. (without the titrant term)</p></li>
+<li><p><strong>with_acid</strong> (<em>bool</em>) – If set to <cite>True</cite> will simulate a titration with strong acid if set to <cite>False</cite> with a strong base.</p></li>
+<li><p><strong>solution_volume</strong> (<em>float</em>) – The total volume of the solution to be titrated in mL.</p></li>
+<li><p><strong>titrant_concentration</strong> (<em>float</em>) – The concentration of the titrant solution in mol/L.</p></li>
+<li><p><strong>delta_volume</strong> (<em>float</em>) – The size of the titrant volume steps used in the simulation.</p></li>
+<li><p><strong>use_dilution</strong> (<em>bool</em>) – If set to <cite>True</cite> (default) will consider the effect of dilution.</p></li>
+<li><p><strong>total_titrant_volume</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – If set to a value different from <cite>None</cite> sets the volume of titrant at which the titration is stopped.</p></li>
+<li><p><strong>figsize</strong> (<em>Tuple</em><em>[</em><em>float</em><em>]</em>) – The tuple of float values setting the size of the figure.</p></li>
+<li><p><strong>save_path</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The path of the file where to save the titration diagram image. If set to None (default)
+will only display the result to the user without saving the plot.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pypH.system.System.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">first</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">second</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">14.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eabs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.system.System.solve" title="Link to this definition"></a></dt>
-<dd><p>Numerically comutes the pH at which the equality <cite>first == second</cite> is satisfied. The function
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">first</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">second</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">14.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eabs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypH.system.System.solve" title="Link to this definition"></a></dt>
+<dd><p>Numerically computes the pH at which the equality <cite>first == second</cite> is satisfied. The function
 uses the dicotomic method in the range <cite>pH_range</cite> to solve the proble iteratively until the
 absolute variation between the terms is smaller then <cite>eabs</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>first</strong> (<a class="reference internal" href="#pypH.species.Auxiliary" title="pypH.species.Auxiliary"><em>Auxiliary</em></a>) – The expression for the left side of the equation</p></li>
-<li><p><strong>second</strong> (<a class="reference internal" href="#pypH.species.Auxiliary" title="pypH.species.Auxiliary"><em>Auxiliary</em></a>) – The expression for the right side of the equation</p></li>
+<li><p><strong>second</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#pypH.species.Auxiliary" title="pypH.species.Auxiliary"><em>Auxiliary</em></a><em>]</em>) – The expression for the right side of the equation. If None the solver will compute <cite>first == 0.</cite>.</p></li>
 <li><p><strong>pH_range</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em>) – The pH range in which the solution must be searched. (default: (0., 14.))</p></li>
 <li><p><strong>eabs</strong> (<em>float</em>) – The maximum absolute error between iteration points to stop the dicotomic search. (default: 1e-6)</p></li>
 </ul>
