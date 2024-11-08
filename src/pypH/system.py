@@ -9,7 +9,7 @@ from pypH.acid import Acid, AcidSpecies
 from pypH.spectator import Spectator, SpectatorSpecies
 from pypH.species import Auxiliary
 
-class Plotter:
+class System:
     """
     A simple class dedicated to the plot and manipulation of logarithmic diagrams. The class
     allows the user to define a system of acid and plot the concentration of the various deprotonation
@@ -101,7 +101,7 @@ class Plotter:
 
         self.__auxiliaries[name] = [auxiliary, color]
 
-    def plot(
+    def plot_logarithmic_diagram(
         self,
         pH_range: List[float] = [0, 14],
         pH_delta: float = 0.001,

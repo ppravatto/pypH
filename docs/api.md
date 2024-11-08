@@ -24,9 +24,9 @@ In this page a summary of all the functions and classes of the `pypH` library is
     :members:
 ```
 
-## `pypH.visualization` module
+## `pypH.system` module
 
 ```{eval-rst}
-.. automodule:: pypH.visualization
+.. automodule:: pypH.system
     :members:
 ```
