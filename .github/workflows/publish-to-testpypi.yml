@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish-to-testpypi::
+  publish-to-testpypi:
     name: Publish release to TestPyPI
     runs-on: ubuntu-latest
     environment:
