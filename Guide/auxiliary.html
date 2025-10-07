@@ -7,11 +7,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Species and Auxiliary functions &mdash; pypH User Guide</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b8108963" />
@@ -117,7 +117,7 @@
 <p>To obtain the symbolic representation of a given species it is sufficient to operate using the <code class="docutils literal notranslate"><span class="pre">()</span></code> round bracket operator on the base <code class="docutils literal notranslate"><span class="pre">Acid</span></code> or <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> class. As an example, referring to the oxalic acid case presented before, the reference to the mono-acid oxalate ion can be obtained from the <code class="docutils literal notranslate"><span class="pre">Acid</span></code> object by specifying the deprotonation index <code class="docutils literal notranslate"><span class="pre">(1)</span></code> of the species:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.acid</span> <span class="kn">import</span> <span class="n">Acid</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pypH.acid</span><span class="w"> </span><span class="kn">import</span> <span class="n">Acid</span>
 
 <span class="n">oxalic_acid</span> <span class="o">=</span> <span class="n">Acid</span><span class="p">([</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">4.14</span><span class="p">],</span> <span class="mf">0.05</span><span class="p">)</span>
 
@@ -138,7 +138,7 @@ AcidSpecies[id: 0, deprot. idx: 1, name: $HA^-$]
 <p>A <code class="docutils literal notranslate"><span class="pre">Species</span></code> object can be summed to and subtracted from other <code class="docutils literal notranslate"><span class="pre">Species</span></code> and <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> object leading to an <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> object representing a symbolic algebric expression. As an example if we want to construct the expression <span class="math notranslate nohighlight">\([HOx^-] + 2[Ox^{2-}]\)</span> we can operate as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.acid</span> <span class="kn">import</span> <span class="n">Acid</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pypH.acid</span><span class="w"> </span><span class="kn">import</span> <span class="n">Acid</span>
 
 <span class="n">oxalic_acid</span> <span class="o">=</span> <span class="n">Acid</span><span class="p">([</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">4.14</span><span class="p">],</span> <span class="mf">0.05</span><span class="p">)</span>
 
@@ -163,7 +163,7 @@ AcidSpecies[id: 0, deprot. idx: 1, name: $HA^-$]
 <p>Now that we have shown how algebric expression can be created in the <code class="docutils literal notranslate"><span class="pre">pypH</span></code> environment, we can now show how these expressions can be plotted onto a logarithmic diagram. To demonstrate how this can be done, let us consider a practical example: the problem of computing the <span class="math notranslate nohighlight">\(pH\)</span> of a <span class="math notranslate nohighlight">\(0.01M\)</span> diammonium phosphate <span class="math notranslate nohighlight">\((NH_4)_2HPO_4\)</span> solution. To do so, let us start by defining the system of acids according to:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.acid</span> <span class="kn">import</span> <span class="n">Acid</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pypH.acid</span><span class="w"> </span><span class="kn">import</span> <span class="n">Acid</span>
 
 <span class="n">phosphoric_acid</span> <span class="o">=</span> <span class="n">Acid</span><span class="p">([</span><span class="mf">2.14</span><span class="p">,</span> <span class="mf">7.20</span><span class="p">,</span> <span class="mf">12.37</span><span class="p">],</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;$H_3PO_4$&quot;</span><span class="p">,</span> <span class="s2">&quot;$H_2PO_4^-$&quot;</span><span class="p">,</span> <span class="s2">&quot;$HPO_4^{2-}$&quot;</span><span class="p">,</span> <span class="s2">&quot;$PO_4^{3-}$&quot;</span><span class="p">])</span>
 <span class="n">ammonium</span> <span class="o">=</span> <span class="n">Acid</span><span class="p">([</span><span class="mf">9.24</span><span class="p">],</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;$NH_4^+$&quot;</span><span class="p">,</span> <span class="s2">&quot;$NH_3$&quot;</span><span class="p">])</span>
@@ -179,7 +179,7 @@ AcidSpecies[id: 0, deprot. idx: 1, name: $HA^-$]
 <p>To visualze the protonic balance on the logarithmic diagram one should represents both sides of the equality in terms of an <code class="docutils literal notranslate"><span class="pre">Auxiliary</span></code> function object. This can be done easily by adopting what discussed in the previous paragraph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.acid</span> <span class="kn">import</span> <span class="n">Hydronium</span><span class="p">,</span> <span class="n">Hydroxide</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pypH.acid</span><span class="w"> </span><span class="kn">import</span> <span class="n">Hydronium</span><span class="p">,</span> <span class="n">Hydroxide</span>
 
 <span class="n">right_side</span> <span class="o">=</span> <span class="n">phosphoric_acid</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">ammonium</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">Hydroxide</span>
 <span class="n">left_side</span> <span class="o">=</span> <span class="n">Hydronium</span> <span class="o">+</span> <span class="n">phosphoric_acid</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">phosphoric_acid</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -200,7 +200,7 @@ $1.0*[H_3O^+]+1.0*[H_2PO_4^-]+2.0*[H_3PO_4]$
 <p>The auxiliary curves can now be added to the plot using the <code class="docutils literal notranslate"><span class="pre">add_auxiliary</span></code> function according to:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pypH.system</span> <span class="kn">import</span> <span class="n">System</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pypH.system</span><span class="w"> </span><span class="kn">import</span> <span class="n">System</span>
 
 <span class="n">system</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
 
@@ -215,7 +215,7 @@ $1.0*[H_3O^+]+1.0*[H_2PO_4^-]+2.0*[H_3PO_4]$
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c8a0ee17a6acfa76979b726b0188d4c2da272cf30cfe51c13b3b83c71e44e388.png" src="../_images/c8a0ee17a6acfa76979b726b0188d4c2da272cf30cfe51c13b3b83c71e44e388.png" />
+<img alt="../_images/b6ae462a01be2fa5c168599b425530c26daf09bf348fc87468e0ea82d780f32a.png" src="../_images/b6ae462a01be2fa5c168599b425530c26daf09bf348fc87468e0ea82d780f32a.png" />
 </div>
 </div>
 <p>As can be seen the protonic balance is satisfied at <span class="math notranslate nohighlight">\(pH \approx 8.05\)</span>.</p>
