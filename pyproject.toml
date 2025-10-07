@@ -10,14 +10,13 @@ authors = [
 ]
 description = "A simple python-based plotter for acid-base logarithmic diagrams visualization"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 classifiers = [
-    "Programming Language :: Python :: 3",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 ]
 dependencies = [
-    "numpy",
-    "matplotlib"
+    "numpy>=2.2.6",
+    "matplotlib>=3.10.3",
 ]
 
 [project.urls]
