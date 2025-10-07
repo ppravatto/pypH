@@ -1,6 +1,6 @@
 # pypH User Guide
 
-Version: [`0.0.1-alpha`](changelog)
+Version: [`0.1.0`](changelog)
 
 This is the user guide for the `pyPH` Python library. This software package is designed to provide a simple interface for the  plotting of logarithmic diagrams for acid-base systems.
 
