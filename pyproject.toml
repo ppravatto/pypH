@@ -3,18 +3,17 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pypH"
+name = "pyph-toolkit"
 version = "0.0.1"
 authors = [
   { name="Pierpaolo Pravatto" },
 ]
-description = "A simple python library to plot logarithmic diagrams of acid base systems"
+description = "A simple python-based plotter for acid-base logarithmic diagrams visualization"
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    "Operating System :: OS Independent",
 ]
 dependencies = [
     "numpy",
@@ -24,3 +23,7 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://github.com/ppravatto/pypH"
 "Bug Tracker" = "https://github.com/ppravatto/pypH/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pypH", "pypH.*"]
