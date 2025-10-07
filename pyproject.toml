@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyph-toolkit"
-version = "0.1.0-alpha"
+version = "0.1.0"
 authors = [
   { name="Pierpaolo Pravatto" },
 ]
@@ -24,5 +24,5 @@ dependencies = [
 "Bug Tracker" = "https://github.com/ppravatto/pypH/issues"
 
 [tool.setuptools.packages.find]
-where = ["."]
+where = ["./src"]
 include = ["pypH", "pypH.*"]
