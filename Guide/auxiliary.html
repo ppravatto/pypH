@@ -129,8 +129,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$[HA^-]$
-AcidSpecies[id: 0, deprot. idx: 1, name: $HA^-$]
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pypH.acid</span><span class="w"> </span><span class="kn">import</span> <span class="n">Acid</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">oxalic_acid</span> <span class="o">=</span> <span class="n">Acid</span><span class="p">([</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">4.14</span><span class="p">],</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">HOx_species</span> <span class="o">=</span> <span class="n">oxalic_acid</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pypH&#39;
 </pre></div>
 </div>
 </div>
@@ -148,11 +154,6 @@ AcidSpecies[id: 0, deprot. idx: 1, name: $HA^-$]
 <span class="n">expression</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">b</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$1.0*[HB^-]+2.0*[B^{2-}]$
 </pre></div>
 </div>
 </div>
@@ -189,12 +190,6 @@ AcidSpecies[id: 0, deprot. idx: 1, name: $HA^-$]
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$1.0*[PO_4^{3-}]+1.0*[NH_3]+1.0*[OH^-]$
-$1.0*[H_3O^+]+1.0*[H_2PO_4^-]+2.0*[H_3PO_4]$
-</pre></div>
-</div>
-</div>
 </div>
 <p>Where the <code class="docutils literal notranslate"><span class="pre">Hydronium</span></code> and <code class="docutils literal notranslate"><span class="pre">Hydroxide</span></code> object are pre-defined intances of the <code class="docutils literal notranslate"><span class="pre">AcidSpecies</span></code> class to represent the solvent derived ions <span class="math notranslate nohighlight">\(H_3O^+\)</span> ad <span class="math notranslate nohighlight">\(OH^-\)</span>.</p>
 <p>The auxiliary curves can now be added to the plot using the <code class="docutils literal notranslate"><span class="pre">add_auxiliary</span></code> function according to:</p>
@@ -214,9 +209,6 @@ $1.0*[H_3O^+]+1.0*[H_2PO_4^-]+2.0*[H_3PO_4]$
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/b6ae462a01be2fa5c168599b425530c26daf09bf348fc87468e0ea82d780f32a.png" src="../_images/b6ae462a01be2fa5c168599b425530c26daf09bf348fc87468e0ea82d780f32a.png" />
-</div>
 </div>
 <p>As can be seen the protonic balance is satisfied at <span class="math notranslate nohighlight">\(pH \approx 8.05\)</span>.</p>
 </section>
@@ -228,11 +220,6 @@ $1.0*[H_3O^+]+1.0*[H_2PO_4^-]+2.0*[H_3PO_4]$
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">computed_pH</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">left_side</span><span class="p">,</span> <span class="n">right_side</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The pH of the solution is </span><span class="si">{</span><span class="n">computed_pH</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The pH of the solution is 8.0545
 </pre></div>
 </div>
 </div>

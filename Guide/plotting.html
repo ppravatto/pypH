@@ -121,16 +121,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pypH.acid</span><span class="w"> </span><span class="kn">import</span> <span class="n">Acid</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">oxalic_acid</span> <span class="o">=</span> <span class="n">Acid</span><span class="p">([</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">4.14</span><span class="p">],</span> <span class="mf">0.05</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pypH&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p>Once an instance of the <code class="docutils literal notranslate"><span class="pre">Acid</span></code> class has been defined the concentration of each deprotonation product can be computed at a given <span class="math notranslate nohighlight">\(pH\)</span> using the <code class="docutils literal notranslate"><span class="pre">concentration</span></code> function. The user can select the desired deprotonation product using as <code class="docutils literal notranslate"><span class="pre">index</span></code> the number of protons removed from the base acid. As an example the concentration of the <span class="math notranslate nohighlight">\(A^{2-}\)</span> species (<code class="docutils literal notranslate"><span class="pre">index</span> <span class="pre">=</span> <span class="pre">2</span></code>) at <span class="math notranslate nohighlight">\(pH=5.2\)</span> can be computed according to:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">oxalic_acid</span><span class="o">.</span><span class="n">concentration</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.045993669391864306
 </pre></div>
 </div>
 </div>
@@ -147,9 +153,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/90f09b6b2e461de031e4e5e3b8ac3ffda7c766a8a24ff8bc6b3207daf9a6ddec.png" src="../_images/90f09b6b2e461de031e4e5e3b8ac3ffda7c766a8a24ff8bc6b3207daf9a6ddec.png" />
-</div>
 </div>
 <p>Please notice how the names of the deprotonation speces have automatically been set to <span class="math notranslate nohighlight">\(H_2A\)</span>, <span class="math notranslate nohighlight">\(HA^{-}\)</span> and <span class="math notranslate nohighlight">\(A^{2-}\)</span> by the <code class="docutils literal notranslate"><span class="pre">Acid</span></code> class constructor. If desired, these labels can be customized by the user by directly listing the desired name in the class constructor. To do so, a list of strings, given in order from the completely protonated form to the completely deprotonated one, can be given as the <code class="docutils literal notranslate"><span class="pre">names</span></code> variable. LaTeX syntax is accepted. As an example, the previous plot can be customized as follows:</p>
 <div class="cell docutils container">
@@ -162,9 +165,6 @@
 <span class="n">plotter</span><span class="o">.</span><span class="n">plot_logarithmic_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/86cdaa22381acc6621bded9d55c0a74ff0290b02fc2e44c30775fe6f09dcd7a6.png" src="../_images/86cdaa22381acc6621bded9d55c0a74ff0290b02fc2e44c30775fe6f09dcd7a6.png" />
 </div>
 </div>
 </section>
@@ -184,9 +184,6 @@
 <span class="n">plotter</span><span class="o">.</span><span class="n">plot_logarithmic_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/6e56d12ff69d0c1d3b68cf4160d4a875e11fd3a0255da0e13f4aeaa2bc5ccaee.png" src="../_images/6e56d12ff69d0c1d3b68cf4160d4a875e11fd3a0255da0e13f4aeaa2bc5ccaee.png" />
 </div>
 </div>
 <p>that, according to the protonic balance <span class="math notranslate nohighlight">\([H_3O^+] = [OH^-] + [Cl^-]\)</span>, confirm the expected solution of <span class="math notranslate nohighlight">\(pH=2\)</span>. Please notice how the <code class="docutils literal notranslate"><span class="pre">add</span></code> method of the <code class="docutils literal notranslate"><span class="pre">System</span></code> class automatically detects the type of term given to it (either <code class="docutils literal notranslate"><span class="pre">Acid</span></code> or <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> object).</p>
