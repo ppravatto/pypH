@@ -266,7 +266,7 @@ class System:
         plt.xlim(pH_range)
 
         plt.xlabel(r"$pH$", size=18)
-        plt.ylabel(r"$\log(C_i)$", size=18)
+        plt.ylabel(r"$C_i$", size=18)
 
         plt.grid(which="major", c="#DDDDDD")
         plt.grid(which="minor", c="#EEEEEE")
@@ -280,6 +280,88 @@ class System:
             plt.savefig(save_path, dpi=600)
 
         plt.show()
+
+    
+    def plot_distribution_diagram(
+        self,
+        reference: Optional[Acid] = None,
+        pH_range: List[float] = [0, 14],
+        pH_delta: float = 0.001,
+        alpha_range: List[float] = [0, 1],
+        show_legend: bool = False,
+        legend_location: Union[int, str] = "upper right",
+        figsize: Tuple[float] = [10, 6],
+        save_path: Optional[str] = None,
+    ) -> None:
+        """
+        Funtion to plot the distribution diagram of the defined acid-base system. The value of the
+        distribution function, by default, goes from 0 to 1. A different range can be set by the user
+        using the `alpha_range` argument.  If a multi-species system is defined the user can
+        specify the `reference species` to which the 0 to 1 scale is referred otherwhise the highest
+        concentration is used to define the scale. In the plot, spectator species and auxiliary expresions
+        are not represented.
+
+        Parameters
+        ----------
+        reference: Optional[Acid]
+            The reference acid to be used to assign the unity value of the distribution
+            function. By default the acid with highest concentration is selected.
+        pH_range: List[float]
+            The minimum and maximum value of pH to be plotted, (defaut: [0, 14])
+        pH_delta: float
+            The pH steps used in plotting the diagram (defaut: 0.001)
+        alpha_range: List[float]
+            The range of alpha values to be plotted on the Y axis (default: [0, 1])
+        show_legend: bool
+            If set to True will show the legend with the name of the traces (default: False)
+        legend_location: Union[int, str]
+            The location of the legend as expressed bu matplotlib. (default: upper right)
+        figsize: Tuple[float]
+            The tuple of float values setting the size of the figure.
+        save_path: Optional[str]
+            The path of the file where to save the distribution diagram image. If set to None (default)
+            will only display the result to the user without saving the plot.
+        """
+
+        pH_scale = np.arange(pH_range[0], pH_range[1], pH_delta)
+
+        plt.rc("font", **{"size": 16})
+        fig = plt.figure(figsize=figsize)
+
+        Cref = 0
+        if reference is None:
+            for acid in self.__acids:
+                if acid.total_concentration > Cref:
+                    Cref = acid.total_concentration
+        else:
+            Cref = reference.total_concentration
+
+        for acid in self.__acids:
+            for i in range(acid.nprotons + 1):
+                alpha = [acid.concentration(i, pH)/Cref for pH in pH_scale]
+                plt.plot(
+                    pH_scale, alpha, label=None if acid.names is None else acid.names[i]
+                )
+
+        plt.ylim(alpha_range)
+        plt.xlim(pH_range)
+
+        plt.xlabel(r"$pH$", size=18)
+        plt.ylabel(r"$\alpha_i$", size=18)
+
+        plt.grid(which="major", c="#DDDDDD")
+        plt.grid(which="minor", c="#EEEEEE")
+
+        if show_legend:
+            plt.legend(loc=legend_location, fontsize=14)
+
+        plt.tight_layout()
+
+        if save_path is not None:
+            plt.savefig(save_path, dpi=600)
+
+        plt.show()
+
 
     def solve(
         self,

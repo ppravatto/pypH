@@ -54,6 +54,13 @@ plotter.add(oxalic_acid)
 plotter.plot_logarithmic_diagram(show_legend=True)
 ```
 
+Besides logarithmic diagrams, the library can also represent distribution diagrams using the function `plot_distribution_diagram`. If applied to the previous system the following result can be obtained:
+
+```{code-cell} python
+plotter.plot_distribution_diagram(show_legend=True)
+```
+
+
 ## Using `Spectator` species
 
 Besides acid-base active species the `pypH` library also allows the representation of spectator species and ions. This can be useful for example in the resolution of protonic balances of various systems (e.g. salts or strong acid or bases). This can be done using the the `Spectator` class. An object of the `Spectator` class can be initialized by specifying a name for the species and a concentration value. As an example the case of the dissociation of a $0.01M$ hydrochloric acid solution can be represented on the logarithmic diagram as:
