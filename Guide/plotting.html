@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic usage &mdash; pypH User Guide</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b8108963" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/scripts/sphinx-book-theme.js"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=b8b12719"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+      <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Species and Auxiliary functions" href="auxiliary.html" />
+    <link rel="prev" title="Theory" href="theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../intro.html">
+            
+              <img src="../_static/logo_pypH.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../user-guide.html">User guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auxiliary.html">Species and Auxiliary functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="titration.html">Visualizing titration curves</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributor-guide.html">Contributor’s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../intro.html">Project name not set</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../intro.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../user-guide.html">User guide</a></li>
+      <li class="breadcrumb-item active">Basic usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Guide/plotting.md" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="theory.html" class="btn btn-neutral float-left" title="Theory" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="auxiliary.html" class="btn btn-neutral float-right" title="Species and Auxiliary functions" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-usage">
+<span id="guide-basic"></span><h1>Basic usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h1>
+<p>The core of the <code class="docutils literal notranslate"><span class="pre">pypH</span></code> library is represented the <code class="docutils literal notranslate"><span class="pre">System</span></code>class. This class represents a generic system of acid-base equilibrium reactions happening simultaneously within a solution. To define a <code class="docutils literal notranslate"><span class="pre">System</span></code> class object one should provide all the acid-base species and the eventually relevant spectator species. These are in turn represented in software by the <code class="docutils literal notranslate"><span class="pre">Acid</span></code> and <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> classes.</p>
+<section id="the-simple-case-of-a-single-acid">
+<h2>The simple case of a single acid<a class="headerlink" href="#the-simple-case-of-a-single-acid" title="Link to this heading"></a></h2>
+<p>Let us start discussing the working of the library by showing how the logarithmic diagram of a single acid species can be plotted. For this example let us consider a <span class="math notranslate nohighlight">\(0.05M\)</span> solution of oxalic acid.</p>
+<p>The starting point of the operation is to define an <code class="docutils literal notranslate"><span class="pre">Acid</span></code> object that will represent our oxalic acid species in solution. The <code class="docutils literal notranslate"><span class="pre">Acid</span></code> class is a simple object capable of encoding a generic mono or polyprotic acid. An instance of the class can be created providing the <span class="math notranslate nohighlight">\(pKa\)</span> of the acid and its total concentration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pypH.acid</span><span class="w"> </span><span class="kn">import</span> <span class="n">Acid</span>
+
+<span class="n">oxalic_acid</span> <span class="o">=</span> <span class="n">Acid</span><span class="p">([</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">4.14</span><span class="p">],</span> <span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once an instance of the <code class="docutils literal notranslate"><span class="pre">Acid</span></code> class has been defined the concentration of each deprotonation product can be computed at a given <span class="math notranslate nohighlight">\(pH\)</span> using the <code class="docutils literal notranslate"><span class="pre">concentration</span></code> function. The user can select the desired deprotonation product using as <code class="docutils literal notranslate"><span class="pre">index</span></code> the number of protons removed from the base acid. As an example the concentration of the <span class="math notranslate nohighlight">\(A^{2-}\)</span> species (<code class="docutils literal notranslate"><span class="pre">index</span> <span class="pre">=</span> <span class="pre">2</span></code>) at <span class="math notranslate nohighlight">\(pH=5.2\)</span> can be computed according to:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">oxalic_acid</span><span class="o">.</span><span class="n">concentration</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.045993669391864306
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once the acid system has been defined it can be passed to the <code class="docutils literal notranslate"><span class="pre">System</span></code> class to generate the acid-base system representing the desired solution. Please notice how in this case the operation is trivial since the oxalic acid is the only species present in the solution. A <code class="docutils literal notranslate"><span class="pre">System</span></code> object however a more generic object that, as it will be shown further on in this guide, can support multiple <code class="docutils literal notranslate"><span class="pre">Acid</span></code> and <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> objects and represents complex acid-base systems. Once the desired <code class="docutils literal notranslate"><span class="pre">System</span></code> object has been defined the corresponding logarithmic diagram can be easily plotted according to:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pypH.system</span><span class="w"> </span><span class="kn">import</span> <span class="n">System</span>
+
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">oxalic_acid</span><span class="p">)</span>
+
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot_logarithmic_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/14afff29a1cf32355d6ca3435d784a87ad14e04c071acaded1a557bc787d5b1d.png" src="../_images/14afff29a1cf32355d6ca3435d784a87ad14e04c071acaded1a557bc787d5b1d.png" />
+</div>
+</div>
+<p>Please notice how the names of the deprotonation speces have automatically been set to <span class="math notranslate nohighlight">\(H_2A\)</span>, <span class="math notranslate nohighlight">\(HA^{-}\)</span> and <span class="math notranslate nohighlight">\(A^{2-}\)</span> by the <code class="docutils literal notranslate"><span class="pre">Acid</span></code> class constructor. If desired, these labels can be customized by the user by directly listing the desired name in the class constructor. To do so, a list of strings, given in order from the completely protonated form to the completely deprotonated one, can be given as the <code class="docutils literal notranslate"><span class="pre">names</span></code> variable. LaTeX syntax is accepted. As an example, the previous plot can be customized as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oxalic_acid</span> <span class="o">=</span> <span class="n">Acid</span><span class="p">([</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">4.14</span><span class="p">],</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;$H_2Ox$&quot;</span><span class="p">,</span> <span class="s2">&quot;$HOx^-$&quot;</span><span class="p">,</span> <span class="s2">&quot;$Ox^{2-}$&quot;</span> <span class="p">])</span>
+
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">oxalic_acid</span><span class="p">)</span>
+
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot_logarithmic_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/50bb5f7fa586d8bfb77ca5feeba6ca8c0df07291ef7290ab8e02b326fe0cdf16.png" src="../_images/50bb5f7fa586d8bfb77ca5feeba6ca8c0df07291ef7290ab8e02b326fe0cdf16.png" />
+</div>
+</div>
+<p>Besides logarithmic diagrams, the library can also represent distribution diagrams using the function <code class="docutils literal notranslate"><span class="pre">plot_distribution_diagram</span></code>. If applied to the previous system the following result can be obtained:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotter</span><span class="o">.</span><span class="n">plot_distribution_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9fb3b8e84ba9493ad7b63575a80ba2319f499146dff6eb42ef574f3d07d86368.png" src="../_images/9fb3b8e84ba9493ad7b63575a80ba2319f499146dff6eb42ef574f3d07d86368.png" />
+</div>
+</div>
+</section>
+<section id="using-spectator-species">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> species<a class="headerlink" href="#using-spectator-species" title="Link to this heading"></a></h2>
+<p>Besides acid-base active species the <code class="docutils literal notranslate"><span class="pre">pypH</span></code> library also allows the representation of spectator species and ions. This can be useful for example in the resolution of protonic balances of various systems (e.g. salts or strong acid or bases). This can be done using the the <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> class. An object of the <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> class can be initialized by specifying a name for the species and a concentration value. As an example the case of the dissociation of a <span class="math notranslate nohighlight">\(0.01M\)</span> hydrochloric acid solution can be represented on the logarithmic diagram as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pypH.spectator</span><span class="w"> </span><span class="kn">import</span> <span class="n">Spectator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypH.system</span><span class="w"> </span><span class="kn">import</span> <span class="n">System</span>
+
+<span class="n">chloride</span> <span class="o">=</span> <span class="n">Spectator</span><span class="p">(</span><span class="s2">&quot;$Cl^-$&quot;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">System</span><span class="p">()</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chloride</span><span class="p">)</span>
+
+<span class="n">plotter</span><span class="o">.</span><span class="n">plot_logarithmic_diagram</span><span class="p">(</span><span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/37cfb6d5b5b6582ca39ed116d2a4b886a27bf047293189515c2bb1a5907f6441.png" src="../_images/37cfb6d5b5b6582ca39ed116d2a4b886a27bf047293189515c2bb1a5907f6441.png" />
+</div>
+</div>
+<p>that, according to the protonic balance <span class="math notranslate nohighlight">\([H_3O^+] = [OH^-] + [Cl^-]\)</span>, confirm the expected solution of <span class="math notranslate nohighlight">\(pH=2\)</span>. Please notice how the <code class="docutils literal notranslate"><span class="pre">add</span></code> method of the <code class="docutils literal notranslate"><span class="pre">System</span></code> class automatically detects the type of term given to it (either <code class="docutils literal notranslate"><span class="pre">Acid</span></code> or <code class="docutils literal notranslate"><span class="pre">Spectator</span></code> object).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Guide"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
