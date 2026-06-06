@@ -266,7 +266,7 @@ class System:
         plt.xlim(pH_range)
 
         plt.xlabel(r"$pH$", size=18)
-        plt.ylabel(r"$\log(C_i)$", size=18)
+        plt.ylabel(r"$C_i$", size=18)
 
         plt.grid(which="major", c="#DDDDDD")
         plt.grid(which="minor", c="#EEEEEE")
