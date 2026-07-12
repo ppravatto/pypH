@@ -199,43 +199,6 @@ class Acid:
             factor += hydronium ** (index - m) * self.__betas[m] / self.__betas[index]
 
         return self.__Ca / factor
-    
-    def _concentration_derivative(self, index: int, pH: float) -> float:
-        """
-        Compute the derivative of the concentration in respect to the oxonium concentration
-        for the deprotonation state selected by the user at the specified pH.
-
-        Parameters
-        ----------
-        index: int
-            The index of the deprotonation state as the number of lost protons
-        pH: float
-            The pH value at which the concentration derivative must be computed
-
-        Raises
-        ------
-        ValueError
-            Exceprion raised when the user specified index is smaller than zero or greate than the number of protons
-
-        Returns
-        -------
-        float
-            The concentration derivative in respect to the oxonium concentration of the selected deprotonation
-            state at the given pH.
-        """
-
-        hydronium = 10 ** (-pH)
-
-        if index < 0 or index > self.nprotons:
-            raise ValueError("Invalid index")
-
-        numerator, denominator = 0, 0
-        for m in range(0, self.nprotons + 1):
-            numerator += (index - m) * (self.__betas[m] / self.__betas[index]) * hydronium ** (index - m - 1) 
-            denominator += hydronium ** (index - m) * self.__betas[m] / self.__betas[index]
-
-        return -self.__Ca * numerator/(denominator**2)
-
 
 
 class AcidSpecies(Species):
