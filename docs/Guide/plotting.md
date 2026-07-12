@@ -54,10 +54,14 @@ plotter.add(oxalic_acid)
 plotter.plot_logarithmic_diagram(show_legend=True)
 ```
 
-Besides logarithmic diagrams, the library can also represent distribution diagrams using the function `plot_distribution_diagram`. If applied to the previous system the following result can be obtained:
+Besides logarithmic diagrams, the library can also represent distribution diagrams using the function `plot_distribution_diagram` and the system [buffer capacity](buffer-capacity) using the `plot_buffer_capacity_diagram()` method. If applied to the previous system, the following can be obtained:
 
 ```{code-cell} python
 plotter.plot_distribution_diagram(show_legend=True)
+```
+
+```{code-cell} python
+plotter.plot_buffer_capacity_diagram()
 ```
 
 
