@@ -362,6 +362,93 @@ class System:
 
         plt.show()
 
+    def plot_buffer_capacity_diagram(
+        self,
+        pH_range: List[float] = [0, 14],
+        beta_range: List[float] = [0, 0.1],
+        pH_delta: float = 0.001,
+        show_water: bool = False,
+        show_single: bool = False,
+        show_legend: bool = False,
+        legend_location: Union[int, str] = "upper right",
+        figsize: Tuple[float] = [10, 6],
+        save_path: Optional[str] = None,
+    ) -> None:
+        """
+        Funtion to plot the buffer capacity diagram of the defined acid-base system.
+
+        Parameters
+        ----------
+        pH_range: List[float]
+            The minimum and maximum value of pH to be plotted, (defaut: [0, 14])
+        beta_range: List[float]
+            The minimum and maximum value of beta to be plotted, (defaut: [0, 0.05])
+        pH_delta: float
+            The pH steps used in plotting the diagram (defaut: 0.001)
+        show_water: bool
+            If set to True, will show as a balck dashed line the contribution to the curve 
+            associated with the water oxonium and hydroxide ions. (default: False)
+        show_single: bool
+            If set to True, will show the individual contribution of each acid to the total
+            buffer capacity (default: False)
+        show_legend: bool
+            If set to True will show the legend with the name of the traces (default: False)
+        legend_location: Union[int, str]
+            The location of the legend as expressed bu matplotlib. (default: upper right)
+        figsize: Tuple[float]
+            The tuple of float values setting the size of the figure.
+        save_path: Optional[str]
+            The path of the file where to save the logarithmic diagram image. If set to None (default)
+            will only display the result to the user without saving the plot.
+        """
+
+        pH_scale = np.arange(pH_range[0], pH_range[1], pH_delta)
+
+        plt.rc("font", **{"size": 16})
+        fig = plt.figure(figsize=figsize)
+
+        beta = np.array([10**(-pH) + 1e-14/(10**(-pH)) for pH in pH_scale])
+        
+        if show_water:
+            plt.plot(pH_scale, beta, color="black", linestyle="--", label="water")
+
+        for acid in self.__acids:
+
+            beta_component = []
+
+            for pH in pH_scale:
+
+                value = 0
+                for i in range(1, acid.nprotons + 1):
+                    value -= i*(10**(-pH))*acid.concentration_derivative_oxonium(i, pH)
+            
+                beta_component.append(np.log(10) * value)
+            
+            if show_single:
+                plt.plot(pH_scale, beta_component, label=acid.names[0])
+            
+            beta += np.array(beta_component)
+
+        plt.plot(pH_scale, beta, label="total")
+
+        plt.xlim(pH_range)
+        plt.ylim(beta_range)
+
+        plt.xlabel(r"$pH$", size=18)
+        plt.ylabel(r"$\beta$", size=18)
+
+        plt.grid(which="major", c="#DDDDDD")
+        plt.grid(which="minor", c="#EEEEEE")
+
+        if show_legend:
+            plt.legend(loc=legend_location, fontsize=14)
+
+        plt.tight_layout()
+
+        if save_path is not None:
+            plt.savefig(save_path, dpi=600)
+
+        plt.show()
 
     def solve(
         self,
