@@ -54,14 +54,29 @@ plotter.add(oxalic_acid)
 plotter.plot_logarithmic_diagram(show_legend=True)
 ```
 
-Besides logarithmic diagrams, the library can also represent distribution diagrams using the function `plot_distribution_diagram` and the system [buffer capacity](buffer-capacity) using the `plot_buffer_capacity_diagram()` method. If applied to the previous system, the following can be obtained:
+Besides logarithmic diagrams, the library can also represent distribution diagrams using the function `plot_distribution_diagram` according to:
 
 ```{code-cell} python
 plotter.plot_distribution_diagram(show_legend=True)
 ```
 
+The plot of distribution diagrams ignores spectator species originated from strong acid/bases and, in the case of multiple acid/base systems, assigns the value $\alpha=1$ to the acid having the higher concentration. If a difference reference is desired, the user can pass to the function the reference species to set the unity value.
+
+The library also allow the user to examine the [buffer capacity](buffer-capacity) of a given acid/base system. This can be done using the `plot_buffer_capacity_diagram()` method of the `System` class according to:
+
 ```{code-cell} python
 plotter.plot_buffer_capacity_diagram()
+```
+
+Also in this case, the plot can be customized showing the contribution provided by water, in the form of $H_3O^+$ and $OH^-$ species, and that of weak acid/base couples. As an example, the previous plot can be customized according to the following example:
+
+```{code-cell} python
+plotter.plot_buffer_capacity_diagram(
+  show_water=True,
+  show_single=True,
+  show_legend=True,
+  beta_range=[0, 0.08]
+)
 ```
 
 
