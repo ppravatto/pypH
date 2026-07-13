@@ -200,10 +200,12 @@ class Acid:
 
         return self.__Ca / factor
     
-    def _concentration_derivative(self, index: int, pH: float) -> float:
+    def concentration_derivative_oxonium(self, index: int, pH: float) -> float:
         """
         Compute the derivative of the concentration in respect to the oxonium concentration
-        for the deprotonation state selected by the user at the specified pH.
+        for the deprotonation state selected by the user at the specified pH. BEWARE thtat,
+        even if the function takes as argument the pH value, the derivative is computed with
+        respect to the [H3O+] concentration.
 
         Parameters
         ----------

@@ -367,6 +367,10 @@ class System:
         pH_range: List[float] = [0, 14],
         beta_range: List[float] = [0, 0.1],
         pH_delta: float = 0.001,
+        show_water: bool = False,
+        show_single: bool = False,
+        show_legend: bool = False,
+        legend_location: Union[int, str] = "upper right",
         figsize: Tuple[float] = [10, 6],
         save_path: Optional[str] = None,
     ) -> None:
@@ -381,6 +385,16 @@ class System:
             The minimum and maximum value of beta to be plotted, (defaut: [0, 0.05])
         pH_delta: float
             The pH steps used in plotting the diagram (defaut: 0.001)
+        show_water: bool
+            If set to True, will show as a balck dashed line the contribution to the curve 
+            associated with the water oxonium and hydroxide ions. (default: False)
+        show_single: bool
+            If set to True, will show the individual contribution of each acid to the total
+            buffer capacity (default: False)
+        show_legend: bool
+            If set to True will show the legend with the name of the traces (default: False)
+        legend_location: Union[int, str]
+            The location of the legend as expressed bu matplotlib. (default: upper right)
         figsize: Tuple[float]
             The tuple of float values setting the size of the figure.
         save_path: Optional[str]
@@ -393,23 +407,29 @@ class System:
         plt.rc("font", **{"size": 16})
         fig = plt.figure(figsize=figsize)
 
-        beta = []
+        beta = np.array([10**(-pH) + 1e-14/(10**(-pH)) for pH in pH_scale])
+        
+        if show_water:
+            plt.plot(pH_scale, beta, color="black", linestyle="--", label="water")
 
-        for pH in pH_scale:
-            
-            value = 0
+        for acid in self.__acids:
 
-            hydronium = 10 ** (-pH)
-            value += hydronium
-            value += 1e-14/hydronium
+            beta_component = []
 
-            for acid in self.__acids:
+            for pH in pH_scale:
+
+                value = 0
                 for i in range(1, acid.nprotons + 1):
-                    value -= i*hydronium*acid._concentration_derivative(i, pH)
+                    value -= i*(10**(-pH))*acid.concentration_derivative_oxonium(i, pH)
             
-            beta.append(np.log(10) * value)
+                beta_component.append(np.log(10) * value)
+            
+            if show_single:
+                plt.plot(pH_scale, beta_component, label=acid.names[0])
+            
+            beta += np.array(beta_component)
 
-        plt.plot(pH_scale, beta)
+        plt.plot(pH_scale, beta, label="total")
 
         plt.xlim(pH_range)
         plt.ylim(beta_range)
@@ -420,6 +440,8 @@ class System:
         plt.grid(which="major", c="#DDDDDD")
         plt.grid(which="minor", c="#EEEEEE")
 
+        if show_legend:
+            plt.legend(loc=legend_location, fontsize=14)
 
         plt.tight_layout()
 
