@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theory &mdash; pypH User Guide</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b8108963" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/scripts/sphinx-book-theme.js"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=b8b12719"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+      <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Basic usage" href="plotting.html" />
+    <link rel="prev" title="User guide" href="../user-guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../intro.html">
+            
+              <img src="../_static/logo_pypH.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../user-guide.html">User guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auxiliary.html">Species and Auxiliary functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="titration.html">Visualizing titration curves</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributor-guide.html">Contributor’s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../intro.html">Project name not set</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../intro.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../user-guide.html">User guide</a></li>
+      <li class="breadcrumb-item active">Theory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Guide/theory.md" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../user-guide.html" class="btn btn-neutral float-left" title="User guide" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plotting.html" class="btn btn-neutral float-right" title="Basic usage" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="theory">
+<span id="guide-theory"></span><h1>Theory<a class="headerlink" href="#theory" title="Link to this heading"></a></h1>
+<p>When an acid of generic formula <span class="math notranslate nohighlight">\(H_nA\)</span>, with <span class="math notranslate nohighlight">\(n\geq1\)</span>, is dissolved in an aqueous solution, a series of dissociation equilibria is immediately established according to the following sequence of reactions:</p>
+<div class="math notranslate nohighlight">
+\[
+\ce{H_nA + H_2O &lt;=&gt; H_{n-1}A^- + H_3O^+}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\ce{H_{n-1}A^- + H_2O &lt;=&gt; H_{n-2}A^{2-} + H_3O^+}
+\]</div>
+<div class="math notranslate nohighlight">
+\[ ... \]</div>
+<div class="math notranslate nohighlight">
+\[
+\ce{HA^{(n-1)-} + H_2O &lt;=&gt; A^{n-} + H_3O^+}
+\]</div>
+<p>Each of the above reactions is an equilibrium characterized by an acid dissociation constant <span class="math notranslate nohighlight">\(k_a^{(i)}\)</span>, defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+k_a^{(i)}=\frac{[H_{n-i}A^{i-}][H_3O^+]}{[H_{n-i+1}A^{(i-1)-}]}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(1\leq i\leq n\)</span> denotes the index of the dissociation reaction, numbered sequentially starting from <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>Given an initial acid concentration <span class="math notranslate nohighlight">\(C_a\)</span>, the following mass balance can be written:</p>
+<div class="math notranslate nohighlight">
+\[
+C_a = [H_nA]+[H_{n-1}A^-]+[H_{n-2}A^{2-}] + ... + [HA^{(n-1)-}] + [A^{n-}]
+\]</div>
+<p>or, in a more compact form,</p>
+<div class="math notranslate nohighlight">
+\[
+C_a = \sum_{j=0}^{n} [H_{n-j}A^{j-}]
+\]</div>
+<p>Using this relation, the concentration <span class="math notranslate nohighlight">\([H_{n-j}A^{j-}]\)</span> of each dissociation product can be expressed as a function of the total acid concentration <span class="math notranslate nohighlight">\(C_a\)</span> and the solution pH.</p>
+<p>To show how this can be done, let us start with a simple observation: each dissociation constant <span class="math notranslate nohighlight">\(k_a^{(i)}\)</span> can be used to express the concentration of either of two consecutive dissociation products as a function of the other.</p>
+<p>For example, the concentration of the deprotonated species <span class="math notranslate nohighlight">\(H_{n-i}A^{i-}\)</span> can be used to express the concentration of its precursor <span class="math notranslate nohighlight">\(H_{n-i+1}A^{(i-1)-}\)</span> according to:</p>
+<div class="math notranslate nohighlight">
+\[
+[H_{n-i+1}A^{(i-1)-}]=\frac{[H_3O^+]}{k_a^{(i)}}[H_{n-i}A^{i-}]
+\]</div>
+<p>Likewise, it can also be used to express the concentration of the following deprotonation product according to:</p>
+<div class="math notranslate nohighlight">
+\[
+[H_{n-i-1}A^{(i+1)-}]=\frac{k_a^{(i+1)}}{[H_3O^+]}[H_{n-i}A^{i-}]
+\]</div>
+<p>These relations can be chained together, allowing the concentration of each species in the dissociation sequence to be expressed as a function of any other species.</p>
+<p>Using this observation, the acid mass balance can be rewritten as a function of the concentration of a generic intermediate species <span class="math notranslate nohighlight">\([H_{n-i}A^{i-}]\)</span>. To do so, a two-step process can be employed. All species with higher protonation states (<span class="math notranslate nohighlight">\(n-m&gt;n-i\)</span>) can be rewritten according to:</p>
+<div class="math notranslate nohighlight">
+\[
+[H_{n-m}A^{m-}]=\frac{[H_3O^+]^{i-m}}{\prod_{j=m+1}^{i} k_a^{(j)}}[H_{n-i}A^{i-}] \qquad \text{for} \qquad m &lt; i
+\]</div>
+<p>while all species with lower protonation states (<span class="math notranslate nohighlight">\(n-m &lt; n-1\)</span>) can be rewritten according to:</p>
+<div class="math notranslate nohighlight">
+\[
+[H_{n-m}A^{m-}]=\frac{\prod_{j=i+1}^{m} k_a^{(j)}}{[H_3O^+]^{m-i}}[H_{n-i}A^{i-}] \qquad \text{for} \qquad m &gt; i
+\]</div>
+<p>By introducing the cumulative dissociation constants:</p>
+<div class="math notranslate nohighlight">
+\[
+\beta_j := \prod_{i=1}^{j} k_a^{(i)}
+\]</div>
+<p>the previous relations can be rewritten as:</p>
+<div class="math notranslate nohighlight">
+\[
+[H_{n-m}A^{m-}]=\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}}[H_{n-i}A^{i-}] \qquad \text{for} \qquad m &lt; i
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+[H_{n-m}A^{m-}]=\frac{\beta_m}{\beta_{i}[H_3O^+]^{m-i}}[H_{n-i}A^{i-}] \qquad \text{for} \qquad m &gt; i
+\]</div>
+<p>where, for the special case <span class="math notranslate nohighlight">\(m=0\)</span>, <span class="math notranslate nohighlight">\(\beta_0 := 1\)</span>. By observing that, when moving from the case <span class="math notranslate nohighlight">\(m&lt;i\)</span> to the case <span class="math notranslate nohighlight">\(m&gt;i\)</span>, the change in the sign of the exponent <span class="math notranslate nohighlight">\(i-m\)</span> automatically moves the <span class="math notranslate nohighlight">\([H_3O^+]\)</span> term to the denominator, it is easy to see that the two expressions can be combined into a single equation valid for all possible cases:</p>
+<div class="math notranslate nohighlight">
+\[
+[H_{n-m}A^{m-}]=\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}}[H_{n-i}A^{i-}]
+\]</div>
+<p>Substituting this relation into the acid mass balance yields:</p>
+<div class="math notranslate nohighlight">
+\[
+C_a = [H_{n-i}A^{i-}]\sum_{m=0}^{n}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}}
+\]</div>
+<p>from which:</p>
+<div class="math notranslate nohighlight">
+\[
+[H_{n-i}A^{i-}] = C_a \bigg( \sum_{m=0}^{n}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} \bigg)^{-1}
+\]</div>
+<section id="buffer-capacity">
+<span id="id1"></span><h2>Buffer capacity<a class="headerlink" href="#buffer-capacity" title="Link to this heading"></a></h2>
+<p>The buffer capacity <span class="math notranslate nohighlight">\(\beta\)</span> indicates the ability of an acid-base system to resist changes in <span class="math notranslate nohighlight">\(\mathrm{pH}\)</span> induced by the addition of a strong acid or base. The buffer capacity is defined as:</p>
+<div class="math notranslate nohighlight">
+\[ \beta := \frac{d C_b}{d \mathrm{pH}} \]</div>
+<p>where the quantity <span class="math notranslate nohighlight">\(C_b\)</span> represents the amount of strong base required to increase the <span class="math notranslate nohighlight">\(\mathrm{pH}\)</span> of the solution. The definition of the buffer capacity can also be rewritten as a function of the <span class="math notranslate nohighlight">\([H_3O^+]\)</span> concentration. To do so, one can consider the following sequence of equalities:</p>
+<div class="math notranslate nohighlight">
+\[ \beta = \frac{d C_b}{d \mathrm{pH}} = \frac{d C_b}{d [H_3O^+]}\frac{[H_3O^+]}{d \mathrm{pH}} = \frac{d C_b}{d [H_3O^+]}\left(\frac{d \mathrm{pH}}{d[H_3O^+]}\right)^{-1}\]</div>
+<p>Recalling the definition <span class="math notranslate nohighlight">\(\mathrm{pH}:= -\log{[H_3O^+]}\)</span>, the last term can be computed as:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{d \mathrm{pH}}{d[H_3O^+]} = - \frac{d}{d[H_3O^+]} \log{[H_3O^+]} = - \frac{1}{[H_3O^+] \log{10}} \]</div>
+<p>Substituting this expression into the previous equation yields:</p>
+<div class="math notranslate nohighlight">
+\[ \beta = -\log{10}[H_3O^+] \frac{d C_b}{d [H_3O^+]} \]</div>
+<p>Using this form of the buffer capacity, an explicit expression for a generic acid-base system can be obtained by considering the following charge balance equation:</p>
+<div class="math notranslate nohighlight">
+\[ [OH^-] + \sum_A \sum_{i=1}^{n_A} i [H_{n_A - i}A^{i-}] = [H_3O^+] + C_b \]</div>
+<p>where the index <span class="math notranslate nohighlight">\(A\)</span> runs over all weak acid-base species in the system, while the index <span class="math notranslate nohighlight">\(i\)</span> runs over all possible deprotonation states, from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(n_A\)</span>. Note that an increase in the deprotonation state directly corresponds to a higher charge state, which is taken into account by multiplying the concentration of each species by the index <span class="math notranslate nohighlight">\(i\)</span>. Strong acids and bases are not explicitly included in the balance because their neutralization produces water, whose contribution is already represented by the <span class="math notranslate nohighlight">\([H_3O^+]\)</span> and <span class="math notranslate nohighlight">\([OH^-]\)</span> terms. Finally, the term <span class="math notranslate nohighlight">\(C_b\)</span> represents the amount of strong base hypothetically added to the acid-base system to evaluate its buffer capacity and can be interpreted as the concentration of a hypothetical counter-ion (e.g. <span class="math notranslate nohighlight">\(Na^+\)</span> during the addition of the strong base <span class="math notranslate nohighlight">\(NaOH\)</span>).</p>
+<p>From the above equation one can easily obtain:</p>
+<div class="math notranslate nohighlight">
+\[ C_b = \frac{k_w}{[H_3O^+]} + \sum_A \sum_{i=1}^{n_A} i [H_{n_A - i}A^{i-}] - [H_3O^+]\]</div>
+<p>whose derivative with respect to the <span class="math notranslate nohighlight">\([H_3O^+]\)</span> concentration can be computed as:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{d C_b}{d [H_3O^+]} = -\frac{k_w}{[H_3O^+]^2} + \sum_A \sum_{i=1}^{n_A} i \frac{d[H_{n_A - i}A^{i-}]}{d[H_3O^+]}  - 1 \]</div>
+<p>Considering the previously derived definition of <span class="math notranslate nohighlight">\(\beta\)</span>, it follows that:</p>
+<div class="math notranslate nohighlight">
+\[ \beta = \log{10}\left[\frac{k_w}{[H_3O^+]} - \sum_A \sum_{i=1}^{n_A} i [H_3O^+]\frac{d[H_{n_A - i}A^{i-}]}{d[H_3O^+]} + [H_3O^+]\right] \]</div>
+<p>The only remaining term to evaluate is the derivative of <span class="math notranslate nohighlight">\([H_{n-i}A^{i-}]\)</span> with respect to <span class="math notranslate nohighlight">\([H_3O^+]\)</span>. Recalling the expression derived in the previous section,</p>
+<div class="math notranslate nohighlight">
+\[
+[H_{n-i}A^{i-}] = C_A \bigg( \sum_{m=0}^{n_A}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} \bigg)^{-1}
+\]</div>
+<p>its derivative can be computed as:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d[H_{n_A - i}A^{i-}]}{d[H_3O^+]} = -C_A \bigg( \sum_{m=0}^{n_A}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} \bigg)^{-2} \sum_{m=0}^{n_A}\frac{(i-m)\beta_{m}[H_3O^+]^{i-m-1}}{\beta_{i}}
+\]</div>
+<p>Substituting this result into the previous equation finally yields:</p>
+<div class="math notranslate nohighlight">
+\[\beta = \log{10}\left[ \frac{k_w}{[H_3O^+]} + \sum_A C_A \sum_{i=1}^{n_A} i \bigg( \sum_{m=0}^{n_A}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} \bigg)^{-2} \sum_{m=0}^{n_A}\frac{(i-m)\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} + [H_3O^+] \right] \]</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Guide"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
