@@ -108,42 +108,48 @@ The buffer capacity $\beta$ indicates the capacity of a given acid-base system t
 
 $$ \beta := \frac{d C_b}{d \mathrm{pH}} $$
 
-where the quantity $C_b$ represents the quantity of strong base required to increase the $\mathrm{pH}$ of the solution. Please notice how the symbol $\beta$, used hereafter for the buffer capacity, does not have any direct relationship with the cumulatives dissociation constants $\beta_j$ previously introduced.
+where the quantity $C_b$ represents the quantity of strong base required to increase the $\mathrm{pH}$ of the solution. The buffer capacity definition can also be rewritten as a function of the $[H_3O^+]$ concentration. To do so, one can consider the following series of equalities:
 
-In order to evaluate how the buffer capacity of a given solution composed of a general amount of weak acid let us start by considering the following charge balance equation:
+$$ \beta = \frac{d C_b}{d \mathrm{pH}} = \frac{d C_b}{d [H_3O^+]}\frac{[H_3O^+]}{d \mathrm{pH}} = \frac{d C_b}{d [H_3O^+]}\left(\frac{d \mathrm{pH}}{d[H_3O^+]}\right)^{-1}$$
+
+By recalling the definition $\mathrm{pH}:= -\log{[H_3O^+]}$, the last term can be computed according to:
+
+$$ \frac{d \mathrm{pH}}{d[H_3O^+]} = - \frac{d}{d[H_3O^+]} \log{[H_3O^+]} = - \frac{1}{[H_3O^+] \log{10}} $$
+
+That, by simple substitution, returns the following relation:
+
+$$ \beta = -\log{10}[H_3O^+] \frac{d C_b}{d [H_3O^+]} $$
+
+Adopting this form of the buffer capacity, an explicit equation for a generic acid/base sistem can be obtained considering the following charge balance equation:
 
 $$ [OH^-] + \sum_A \sum_{i=1}^{n_A} i [H_{n_A - i}A^{i-}] = [H_3O^+] + C_b $$
 
-Where the index $A$ runs across all the weak acid/base species in the system and the index $i$ along all the possible deprotonation states going from $1$ to $n_A$. This, in turn, correspond to an increasingly higher charge state that is taken into account in the summation by multiplying their concentration by the index $i$. Please notice how strong acid or bases in the system are not taken into accout since their neutralization produces water the contribution is already described by the $[H_3O^+]$ and $[OH^-]$ terms. The $C_b$ term represent the amount of strong base hypotetically added to the acid/base system to probe its buffer capacity.
+Where the index $A$ runs across all the weak acid/base species in the system and the index $i$ along all the possible deprotonation states going from $1$ to $n_A$. Please notice how an increase in the deprotonation state directly corresponds to an higher charge state that, in turn, is taken into account by multiplying their concentration by the index $i$. Please notice how strong acid or bases in the system are not taken into accout since their neutralization produces water the contribution of which is already described by the $[H_3O^+]$ and $[OH^-]$ terms. Please notice how the $C_b$ term represent the amount of strong base hypotetically added to the acid/base system to probe its buffer capacity and can thinked as the concentration of an hypotetical counter-ion (e.g. $Na^+$ in during the addition of the strong base $NaOH$).
 
 From the above equation one can easily obtain the expression:
 
 $$ C_b = \frac{k_w}{[H_3O^+]} + \sum_A \sum_{i=1}^{n_A} i [H_{n_A - i}A^{i-}] - [H_3O^+]$$
 
-that, by introducing the expression obtained in the previous section, allows as to obtain:
+the derivative of which, in respect to the $[H_3O^+]$ concentration can be computed according to:
 
-$$ C_b = \frac{k_w}{[H_3O^+]} + \sum_A C_A \sum_{i=1}^{n_A} i \bigg( \sum_{m=0}^{n_A}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} \bigg)^{-1} - [H_3O^+]$$
+$$ \frac{d C_b}{d [H_3O^+]} = -\frac{k_w}{[H_3O^+]^2} + \sum_A \sum_{i=1}^{n_A} i \frac{d[H_{n_A - i}A^{i-}]}{d[H_3O^+]}  - 1 $$
 
-The obtained expression now shows only dependence upon the $[H_3O^+]$ term and can be used to directly compute the buffer capacity. To do so, the $\beta$ expression can be adjusted as follows:
+Considering the previously derived definition of $\beta$ it is simple to observe how:
 
-$$ \beta = \frac{d C_b}{d \mathrm{pH}} = \frac{d C_b}{d [H_3O^+]}\frac{[H_3O^+]}{d \mathrm{pH}} = \frac{d C_b}{d [H_3O^+]}\left(\frac{d \mathrm{pH}}{d[H_3O^+]}\right)^{-1}$$
+$$ \beta = \log{10}\left[\frac{k_w}{[H_3O^+]} - \sum_A \sum_{i=1}^{n_A} i [H_3O^+]\frac{d[H_{n_A - i}A^{i-}]}{d[H_3O^+]} + [H_3O^+]\right] $$
 
-Considering that $\mathrm{pH}:= -\log{[H_3O^+]}$ the following can be obtained:
+Where the only missing term to compute is represented by the derivative $[H_{n-i}A^{i-}]$ in respect to $[H_3O^+]$. This can be easily computed recalling that, according to what derived in the previous section, the following equation can be written:
 
-$$ \frac{d \mathrm{pH}}{d[H_3O^+]} = - \frac{d}{d[H_3O^+]} \log{[H_3O^+]} = - \frac{1}{[H_3O^+] \log{10}} $$
+$$
+[H_{n-i}A^{i-}] = C_A \bigg( \sum_{m=0}^{n_A}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} \bigg)^{-1}
+$$
 
-From which:
+Following this definition the missing term can easily be computed according to:
 
-$$ \beta = -\log{10}[H_3O^+] \frac{d C_b}{d [H_3O^+]} $$
+$$
+\frac{d[H_{n_A - i}A^{i-}]}{d[H_3O^+]} = -C_A \bigg( \sum_{m=0}^{n_A}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} \bigg)^{-2} \sum_{m=0}^{n_A}\frac{(i-m)\beta_{m}[H_3O^+]^{i-m-1}}{\beta_{i}}
+$$
 
-To obtain the formal expression for $\beta$ let us observe how:
-
-$$ \frac{d C_b}{d [H_3O^+]} = -\frac{k_w}{[H_3O^+]^2} + \sum_A C_A \sum_{i=1}^{n_A} i \frac{d}{d[H_3O^+]} \bigg( \sum_{m=0}^{n_A}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} \bigg)^{-1} - 1 $$
-
-where the inner derivative can be computed as follows:
-
-$$ \frac{d}{d[H_3O^+]} \bigg( \sum_{m=0}^{n_A}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} \bigg)^{-1} = - \bigg( \sum_{m=0}^{n_A}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} \bigg)^{-2} \sum_{m=0}^{n_A}\frac{(i-m)\beta_{m}[H_3O^+]^{i-m-1}}{\beta_{i}} $$
-
-The buffer capacity $\beta$ can, as such, be computed according to:
+By simple substitution one can finally obtain the expression:
 
 $$\beta = \log{10}\left[ \frac{k_w}{[H_3O^+]} + \sum_A C_A \sum_{i=1}^{n_A} i \bigg( \sum_{m=0}^{n_A}\frac{\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} \bigg)^{-2} \sum_{m=0}^{n_A}\frac{(i-m)\beta_{m}[H_3O^+]^{i-m}}{\beta_{i}} + [H_3O^+] \right] $$
